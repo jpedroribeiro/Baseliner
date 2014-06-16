@@ -1,0 +1,8 @@
+
+/* Baseline 8 */
+.baseline { position: relative; }
+.baseline:after { position: absolute; width: auto; height: auto; z-index: 9999; content: ''; display: block; pointer-events: none; top: calc(39px + 88px); right: 0; bottom: 0; left: 0; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAIAQMAAADk/cxGAAAABlBMVEX///8AAABVwtN+AAAAAnRSTlMANrkpWKEAAAAMSURBVAiZY2BAAQ8AAPAA4ZQsu0UAAAAASUVORK5CYII=') repeat top left; }
+.baseline:active:after { display: none; }
+@media only screen and (max-width:989px) { .baseline:after { top: calc(46px + 65px); } }
+@media only screen and (max-width:767px) { .baseline:after { top: 60px; } }
+/* END Baseline 8 */
