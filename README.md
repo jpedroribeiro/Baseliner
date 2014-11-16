@@ -1,11 +1,10 @@
 Baseliner
 ======
 
-All your baseline are belong to 8px
+All your baseline are belong to us
 
-**Baseliner** adds horizontal lines to match a baseline of 8px.
+**Baseliner** adds horizontal lines to match a baseline of your preference.
 
-This is the first version and is very basic, more features to come.
 
 
 ## Installation
