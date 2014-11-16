@@ -1,4 +1,5 @@
 // TODO: find better position for text fields
+// TODO: do a cleanup when removing baseliner
 
 (function(){
 	var myBody = document.getElementsByTagName('body')[0],
