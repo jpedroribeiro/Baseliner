@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Baseliner",
+  "description": "Adds a baseline reference for making pixel perfect UIs",
+  "version": "1.0",
+  "browser_action": {
+//    "default_icon": {
+//      "19": "images/icon19.png",
+//      "38": "images/icon38.png"
+//    },
+    "default_popup": "main.html",
+    "default_title": "Baseliner"
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
