@@ -33,7 +33,7 @@ extensionTop.addEventListener('input', updatesBaseliner);
 
 /*
 TODO: Chrome Extension
-1) Auto remove on Init
+DONE) Auto remove on Init
 2) add 'Remove' button
 3) -
 4) create icon for chrome extension

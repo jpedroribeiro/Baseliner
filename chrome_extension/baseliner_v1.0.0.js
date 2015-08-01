@@ -1,4 +1,9 @@
 
+/**
+ * Baseliner
+*/
+
+
 Baseliner = {
 	$body:			null,
 	$head:			null,
@@ -13,10 +18,16 @@ Baseliner = {
 	 * Initialises application
 	 */
 	init: function(){
-		// Update object's properties
+
+		// SETUP: Update object's properties
 		Baseliner.$body = document.getElementsByTagName('body')[0];
 		Baseliner.$head = document.getElementsByTagName('head')[0];
 		Baseliner.calcBG = Baseliner.baselineBG;
+
+		// Cleanup if needed
+		if ( Baseliner.findInArray('baseliner', Baseliner.$body.classList) ){
+			Baseliner.removeBaseliner();
+		}
 
 		// Create style tag
 		Baseliner.$style = document.createElement('style');
@@ -58,7 +69,9 @@ Baseliner = {
 	 * Removes application
 	 */
 	removeBaseliner: function () {
-		if ( !!Baseliner.styleSheet ) Baseliner.removeRules();
+		if ( !!Baseliner.styleSheet ) {
+			Baseliner.removeRules();
+		}
 		Baseliner.$body.classList.remove('baseliner');
 		console.log('%c Baseliner removed from page. ', 'background: #209C39; color: #DFDFDF');
 	},
@@ -95,6 +108,20 @@ Baseliner = {
 		if ( !!Baseliner.styleSheet ) Baseliner.removeRules();
 		Baseliner.addRules(newBG, newTop);
 		console.log('%c Baseliner has a new baseline of ' + newBaseline + '. starting at ' + parseInt(newTop) + '.', 'background: #DFDFDF; color: #209C39');
+	},
+
+	/**
+	 * Find a needle in a haystack
+	 * @param needle
+	 * @param haystack
+	 * @returns {boolean}
+	 */
+	findInArray: function ( needle, haystack ) {
+		var res = false;
+		haystack.forEach(function(element, index, array){
+			if (element == needle) res = true;
+		});
+		return res;
 	}
 };
 
