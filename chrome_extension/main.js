@@ -34,13 +34,13 @@ extensionBtnRemove.addEventListener('click', removeBaseliner);
 
 
 /*
-TODO: Chrome Extension
+TODO
 
 DONE) Auto remove on Init
 DONE) add 'Remove' button
 NOPE) Integrate executable functions into one "run()"?
-4) create icon for chrome extension
-5) see other options for manifest.json
+DONE) create icon for chrome extension
+DONE) see other options for manifest.json
 6) style chrome extension popup
 7) comment/document everything
 0) Review DEMO and see if it can use same as chrome version of JS
