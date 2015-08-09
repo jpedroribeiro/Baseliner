@@ -9,10 +9,19 @@ var extensionBtnRemove  = document.getElementById('btnRemoveBaseliner');
 
 
 /* Executes || Updates Baseliner */
-var updatesBaseliner = function(){
+var updatesBaseliner = function(event){
+
+    // If Up/Down arrow pressed...
+    if (event.keyIdentifier === 'Up' && event.target === extensionTop) extensionTop.value++;
+    if (event.keyIdentifier === 'Down' && event.target === extensionTop) extensionTop.value--;
+    if (event.keyIdentifier === 'Up' && event.target === extensionBaseline) extensionBaseline.value++;
+    if (event.keyIdentifier === 'Down' && event.target === extensionBaseline) extensionBaseline.value--;
+
+    // Set my initial vars with integers
     var newTop  = extensionTop.value || 0;
     var newBase = extensionBaseline.value || 0;
 
+    // Executes Baseliner update script
     chrome.tabs.executeScript({
         code: 'Baseliner.update(' + newBase + ',' + newTop + ')'
     });
@@ -27,23 +36,26 @@ var removeBaseliner = function(){
 };
 
 
-/* Set event listeners */
+/* Set event listeners on form fields */
 extensionBaseline.addEventListener('input', updatesBaseliner);
+extensionBaseline.addEventListener('keydown', updatesBaseliner);
 extensionTop.addEventListener('input', updatesBaseliner);
+extensionTop.addEventListener('keydown', updatesBaseliner);
 extensionBtnRemove.addEventListener('click', removeBaseliner);
 
 
 /*
 TODO
+ 1) Update README
+ 2) Detect current baseliner config when clicking on the extension icon so I can continue the work
 
 DONE) Auto remove on Init
 DONE) add 'Remove' button
 NOPE) Integrate executable functions into one "run()"?
 DONE) create icon for chrome extension
 DONE) see other options for manifest.json
-6) style chrome extension popup
-7) comment/document everything
-0) Review DEMO and see if it can use same as chrome version of JS
-8) offer minified version on demo
+DONE) style chrome extension popup
+DONE) comment/document everything
+
 
  */
