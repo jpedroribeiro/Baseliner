@@ -3,16 +3,51 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Baseliner Chrome Extension</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 8px;
+            background: white;
+            width: 180px;
+            height: auto;
+        }
+
+        .baseliner {
+            border: 1px dotted #ddd;
+            padding: 8px;
+        }
+
+        .baseliner label {
+            font-weight: bold;
+            display: inline-block;
+            padding: 2px 4px 2px 2px;
+        }
+
+        .baseliner input {
+            width: 20px;
+            display: inline-block;
+            padding: 2px 5px;
+        }
+
+        .baseliner button {
+            margin-top: 8px;
+            width: 100%;
+            border: 1px solid grey;
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
 
-Top
-<input type="text" id="baselinerTop" value="0">
+<section class="baseliner">
+    <label for="baselinerTop">Top</label>
+    <input type="text" id="baselinerTop" value="0">
 
-Baseline
-<input type="text" id="baselinerValue" value="8">
+    <label for="baselinerValue">Baseline</label>
+    <input type="text" id="baselinerValue" value="8">
 
-<button id="btnRemoveBaseliner">Remove Baseliner</button>
+    <button id="btnRemoveBaseliner">Remove Baseliner</button>
+</section>
 
 <script src="main.js"></script>
 </body>
