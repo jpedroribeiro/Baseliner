@@ -46,9 +46,10 @@ extensionBtnRemove.addEventListener('click', removeBaseliner);
 
 /*
 TODO
- 1) Update README
- 2) Detect current baseliner config when clicking on the extension icon so I can continue the work
 
+1) Detect current baseliner config when clicking on the extension icon so I can continue the work
+
+DONE) Update README
 DONE) Auto remove on Init
 DONE) add 'Remove' button
 NOPE) Integrate executable functions into one "run()"?
