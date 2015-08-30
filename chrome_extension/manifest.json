@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Baseliner",
+  "short_name": "Baseliner",
   "description": "Adds a baseline reference for making pixel perfect UIs",
   "version": "1.0",
   "author": "J. Pedro Ribeiro",
