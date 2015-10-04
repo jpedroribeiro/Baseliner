@@ -602,12 +602,6 @@ header {
     background: white;
 }
 
-    .baseliner label {
-        font-weight: bold;
-        display: inline-block;
-        padding: 2px 4px 2px 2px;
-    }
-
     .baseliner .fieldInput {
         display: inline-block;
         font-size: 24px;
@@ -616,7 +610,7 @@ header {
         width: 30px;
         text-align: right;
     }
-        .baseliner span {
+        .baseliner label {
            font-size: 24px;
             color: #10174C;
         }
@@ -684,6 +678,7 @@ header {
     cursor: pointer;
     transition: color 400ms
 }
-    .removeButton:hover {
+    .removeButton:hover,
+    .removeButton:focus {
         color: red;
     }
