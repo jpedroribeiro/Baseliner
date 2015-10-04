@@ -3,6 +3,10 @@
 var $extensionTop        = document.getElementById('baselinerTop');
 var $extensionBaseline   = document.getElementById('baselinerValue');
 var $extensionBtnRemove  = document.getElementById('btnRemoveBaseliner');
+var $arrowtopUp          = document.getElementById('topUp');
+var $arrowtopDown        = document.getElementById('topDown');
+var $arrowbaseUp         = document.getElementById('baseUp');
+var $arrowbaseDown       = document.getElementById('baseDown');
 
 
 /* Runs Baseliner script on tab */
@@ -48,19 +52,32 @@ $extensionTop.addEventListener('input', updatesBaseliner);
 $extensionTop.addEventListener('keydown', updatesBaseliner);
 $extensionBtnRemove.addEventListener('click', removeBaseliner);
 
-
-/*
-
-
-V1 Done - 30/08/2015
-DONE) Detect current baseliner config when clicking on the extension icon so I can continue the work
-DONE) Update README
-DONE) Auto remove on Init
-DONE) add 'Remove' button
-NOPE) Integrate executable functions into one "run()"?
-DONE) create icon for chrome extension
-DONE) see other options for manifest.json
-DONE) style chrome extension popup
-DONE) comment/document everything
-
- */
+/* Event Listeners for arrows */
+$arrowtopUp.addEventListener('click', function(){
+    var event = {
+        keyIdentifier: "Up",
+        target: $extensionTop
+    }
+    updatesBaseliner(event);
+});
+$arrowtopDown.addEventListener('click', function(){
+    var event = {
+        keyIdentifier: "Down",
+        target: $extensionTop
+    }
+    updatesBaseliner(event);
+});
+$arrowbaseUp.addEventListener('click', function(){
+    var event = {
+        keyIdentifier: "Up",
+        target: $extensionBaseline
+    }
+    updatesBaseliner(event);
+});
+$arrowbaseDown.addEventListener('click', function(){
+    var event = {
+        keyIdentifier: "Down",
+        target: $extensionBaseline
+    }
+    updatesBaseliner(event);
+});

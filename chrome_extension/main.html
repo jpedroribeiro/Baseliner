@@ -3,51 +3,39 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Baseliner Chrome Extension</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 8px;
-            background: white;
-            width: 180px;
-            height: auto;
-        }
-
-        .baseliner {
-            border: 1px dotted #ddd;
-            padding: 8px;
-        }
-
-        .baseliner label {
-            font-weight: bold;
-            display: inline-block;
-            padding: 2px 4px 2px 2px;
-        }
-
-        .baseliner input {
-            width: 20px;
-            display: inline-block;
-            padding: 2px 5px;
-        }
-
-        .baseliner button {
-            margin-top: 8px;
-            width: 100%;
-            border: 1px solid grey;
-            background-color: #f0f0f0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
 
+<header>
+    <img src="wordmark.svg">
+</header>
+
 <section class="baseliner">
-    <label for="baselinerTop">Top</label>
-    <input type="text" id="baselinerTop">
+    <fieldset class="fieldLine fromTop">
+        <img src="height-from-top.svg">
+        <input type="text" id="baselinerTop" class="fieldInput">
+        <span>px</span>
+        <div class="arrowsContainer">
+            <input type="button" id="topUp" class="arrowUp">
+            <input type="button" id="topDown" class="arrowDown">
+        </div>
+    </fieldset>
 
-    <label for="baselinerValue">Baseline</label>
-    <input type="text" id="baselinerValue">
 
-    <button id="btnRemoveBaseliner">Remove Baseliner</button>
+    <fieldset class="fieldLine fromTop">
+        <img src="line-height.svg">
+        <input type="text" id="baselinerValue" class="fieldInput">
+        <span>px</span>
+        <div class="arrowsContainer">
+            <input type="button" id="baseUp" class="arrowUp">
+            <input type="button" id="baseDown" class="arrowDown">
+        </div>
+    </fieldset>
 </section>
+
+<button id="btnRemoveBaseliner" class="removeButton">Clear Baseliner</button>
+
 
 <script src="main.js"></script>
 </body>
