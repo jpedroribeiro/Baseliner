@@ -69,8 +69,15 @@ footer {
     padding: 40px;
 }
 
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
 main {
     display: flex;
+    min-width: 850px;
 }
 
 section {
@@ -96,7 +103,12 @@ section {
     width: 210px;
     right: 18px;
     top: 114px;
+    transition: 750ms all;
 }
+    .widget.before{
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
 .content {
     padding-right: 32px;
@@ -152,7 +164,23 @@ p {
 }
 
 
+.credits {
+    float: right;
+    color: white;
+    list-style: none;
+    font-size: 13px;
+    margin: 8px 0;
+}
 
+.credits a {
+    color: white;
+    font-weight: bold;
+}
+
+.credits a:hover {
+    text-decoration: none;
+    color: #FBC02D;
+}
 
 
 
