@@ -16,5 +16,7 @@
     "128": "icon128.png" },
   "permissions": [
     "activeTab"
-  ]
+  ],
+  "web_accessible_resources": [
+    "line.svg", "main.js","jsColorPicker.min.js", "picker.js"]
 }

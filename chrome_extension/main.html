@@ -12,6 +12,11 @@
 </header>
 
 <section class="baseliner">
+  <fieldset class="fieldLine fromTop">
+      <img src="line-color.svg">
+  <input id="baselinerColor" class="color colorInput" value="#CCCCCC" data-colormode="HEX" readonly="" style="color: rgb(34, 34, 34); background-color: rgb(182, 189, 121);">
+  </fieldset>
+
     <fieldset class="fieldLine fromTop">
         <img src="height-from-top.svg">
         <input type="text" id="baselinerTop" class="fieldInput" tabindex="1">
@@ -32,11 +37,27 @@
             <input type="button" id="baseDown" class="arrowDown" tabindex="-1">
         </div>
     </fieldset>
+
+    <fieldset class="fieldLine fromTop">
+        <img src="line-opacity.svg">
+        <input type="text" id="baselinerOpacity" class="fieldInput" tabindex="2">
+        <label for="baselinerOpacity">%</label>
+        <div class="arrowsContainer">
+            <input type="button" id="opacityUp" class="arrowUp" tabindex="-1">
+            <input type="button" id="opacityDown" class="arrowDown" tabindex="-1">
+        </div>
+    </fieldset>
+
+
+
 </section>
 
 <button id="btnRemoveBaseliner" class="removeButton">Clear Baseliner</button>
 
 
 <script src="main.js"></script>
+<script type="text/javascript" src="jsColorPicker.min.js"></script>
+<script type="text/javascript" src="picker.js"></script>
+
 </body>
 </html>

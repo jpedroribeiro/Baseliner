@@ -578,9 +578,9 @@ body,html {
     margin: 0;
     padding: 0;
     background: #10174C;
-    width: 200px;
+    width: 300px;
     height: auto;
-    font-family: 'AvenirNextLTPro-Regular'
+    font-family: 'Helvetica', 'Arial', 'non-serif';
 }
 
 input, button {
@@ -598,7 +598,7 @@ header {
 
 
 .baseliner {
-    padding: 24px;
+    padding: 30px;
     background: white;
 }
 
@@ -607,21 +607,27 @@ header {
         font-size: 24px;
         color: #10174C;
         border: none;
-        width: 30px;
+        width: 40px;
         text-align: right;
+    }
+
+    .styleInput {
+      width: 200px;
+      font-size: 12px;
     }
         .baseliner label {
            font-size: 24px;
             color: #10174C;
         }
 
+
     .baseliner button {
         margin-top: 8px;
-        width: 100%;
+
         border: 1px solid grey;
         background-color: #f0f0f0;
     }
-
+  /*width: 100%;*/
 .fieldLine {
     border: none;
     margin: 0 0 32px;
@@ -643,7 +649,7 @@ header {
 .arrowsContainer {
     width: 16px;
     position: absolute;
-    right: 0;
+    left: 140px;
     top: 0;
 }
     .arrowUp {
@@ -682,3 +688,12 @@ header {
     .removeButton:focus {
         color: red;
     }
+
+
+    .colorInput {
+    height: 24px;
+    margin-top: 3px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+}
