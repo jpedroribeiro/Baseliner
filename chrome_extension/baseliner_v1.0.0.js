@@ -5,15 +5,15 @@
 
 
 Baseliner = {
-	$body:			null,	// Caching DOM elements
-	$head:			null,	//		''
-	$style:			null,	//		''
-	styleSheet:		null,	// Stylesheet object (default blank)
-	calcBG:			null,	// Used for calculations only
-	baselineTop:	0,		// Default value
-	baseline:		12,		//      ''
-	opacity: 100,
-	baselinerColor: '#cccccc',
+	$body:							null,	// Caching DOM elements
+	$head:							null,	//		''
+	$style:							null,	//		''
+	styleSheet:         null,	// Stylesheet object (default blank)
+	calcBG:		 				  null,	// Used for calculations only
+	baselineTop:        	 0,		// Default value
+	baseline:		          12,		//      ''
+	baselineOpacity: 		 100,
+	baselineColor: '#cccccc',
 	baselineBG:		'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAMAAADO4v//AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMTgwMTE3NDA3MjA2ODExODA4M0E2MjRGQUZBNzBEMSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo3MzRDMzUwNDY1Q0UxMUU0OTRFREY2QjExNkIyRUM5MSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3MzRDMzUwMzY1Q0UxMUU0OTRFREY2QjExNkIyRUM5MSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMTgwODNBNjI0RkFGQTcwRDEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDE4MDExNzQwNzIwNjgxMTgwODNBNjI0RkFGQTcwRDEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6N6NZdAAAABlBMVEXJycn///98fvuHAAAAAnRSTlP/AOW3MEoAAAAPSURBVHjaYmBgYGAECDAAAAYAAkOFlzgAAAAASUVORK5CYII=',
 
 
@@ -32,8 +32,8 @@ Baseliner = {
 			// ...then lets update the default values with the ones used on current site
 			this.baseline = this.getBaselineDataAttribute();
 			this.baselineTop = this.getTopDataAttribute();
-			this.baselinerColor = this.getColorDataAttribute();
-			this.opacity = this.getOpacityDataAttribute();
+			this.baselineColor = this.getColorDataAttribute();
+			this.baselineOpacity = this.getOpacityDataAttribute();
 
 			Baseliner.removeBaseliner();
 		}
@@ -51,10 +51,10 @@ Baseliner = {
 		console.log('%c Baseliner added to page. ', 'background: #209C39; color: #DFDFDF');
 
 		// Initialises with hardcoded default values
-		Baseliner.update(this.baseline, this.baselineTop, this.baselinerColor, this.opacity );
-		
+		Baseliner.update(this.baselineColor, this.baseline, this.baselineTop, this.baselineOpacity);
+
 		// ...and send them back to the Extension tab (main.js)
-		return [this.baselinerColor, this.baseline, this.baselineTop, this.opacity];
+		return [this.baselineColor, this.baseline, this.baselineTop, this.baselineOpacity];
 	},
 
 
@@ -100,12 +100,12 @@ Baseliner = {
 
 	/**
 	 * Updates Baseliner with new values
+	 * @param newColor
 	 * @param newBaseline
 	 * @param newTop
-	 * @param newColor
+	 * @param newOpacity
 	 */
-	// update: function(newBaseline, newTop) {
-		update: function(newBaseline, newTop, newColor, newOpacity) {
+		update: function(newColor, newBaseline, newTop, newOpacity) {
 
 		var canvas = document.createElement('canvas'),
 			context = canvas.getContext('2d'),
@@ -126,7 +126,7 @@ Baseliner = {
 
 		if ( !!Baseliner.styleSheet ) Baseliner.removeRules();
 		Baseliner.addRules(newBG, newTop);
-		Baseliner.setDataAttributes(newBaseline, newTop, newOpacity, newColor);
+		Baseliner.setDataAttributes(newColor, newBaseline, newTop, newOpacity);
 		console.log('%c Baseliner has a new baseline of ' + newBaseline + '. starting at ' + parseInt(newTop) + '.', 'background: #DFDFDF; color: #209C39');
 	},
 
@@ -148,12 +148,14 @@ Baseliner = {
 	 * Add values to body as data attributes for reusability
 	 * @param baseline
 	 * @param top
+	 * @param opacity
+	 * @param color
 	 */
-	setDataAttributes: function(baseline, top, opacity, color){
+	setDataAttributes: function(color, baseline, top, opacity){
+		this.$body.setAttribute('blnr-color', color);
 		this.$body.setAttribute('blnr-bas', baseline);
 		this.$body.setAttribute('blnr-top', top);
 		this.$body.setAttribute('blnr-opacity', opacity);
-		this.$body.setAttribute('blnr-color', color);
 	},
 
 	/**

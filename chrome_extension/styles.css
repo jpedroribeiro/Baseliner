@@ -627,7 +627,7 @@ header {
         border: 1px solid grey;
         background-color: #f0f0f0;
     }
-  /*width: 100%;*/
+
 .fieldLine {
     border: none;
     margin: 0 0 32px;
@@ -690,7 +690,7 @@ header {
     }
 
 
-    .colorInput {
+.colorInput {
     height: 24px;
     margin-top: 3px;
     border: none;

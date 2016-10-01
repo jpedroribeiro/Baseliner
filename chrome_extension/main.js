@@ -44,7 +44,8 @@ var updatesBaseliner = function(event){
 
     // Executes Baseliner update script
     chrome.tabs.executeScript({
-        code: 'Baseliner.update(' + newBase + ',' + newTop + ',"' + newColor + '",' + newOpacity + ')'
+
+        code: 'Baseliner.update("' + newColor + '",' + newBase + ',' + newTop + ',' + newOpacity + ')'
     });
 };
 
