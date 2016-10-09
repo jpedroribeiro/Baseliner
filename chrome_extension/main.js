@@ -8,10 +8,10 @@ var $arrowtopDown        = document.getElementById('topDown');
 var $arrowbaseUp         = document.getElementById('baseUp');
 var $arrowbaseDown       = document.getElementById('baseDown');
 var $extensionOpacity    = document.getElementById('baselinerOpacity');
-var $arrowOpacityUp          = document.getElementById('opacityUp');
-var $arrowOpacityDown        = document.getElementById('opacityDown');
+var $arrowOpacityUp      = document.getElementById('opacityUp');
+var $arrowOpacityDown    = document.getElementById('opacityDown');
 var $baselinerColor      = document.getElementById('baselinerColor');
-var $color               = '';
+
 
 /* Runs Baseliner script on tab */
 chrome.tabs.executeScript(null, {file: "baseliner_v1.0.0.js"}, function(currentValues){
@@ -20,7 +20,6 @@ chrome.tabs.executeScript(null, {file: "baseliner_v1.0.0.js"}, function(currentV
     $extensionBaseline.value = currentValues[0][1];
     $extensionTop.value = currentValues[0][2];
     $extensionOpacity.value = currentValues[0][3]
-
 });
 
 
@@ -49,6 +48,7 @@ var updatesBaseliner = function(event){
     });
 };
 
+
 /* Executes removeBaseliner */
 var removeBaseliner = function(){
     chrome.tabs.executeScript({
@@ -64,8 +64,8 @@ $extensionTop.addEventListener('input', updatesBaseliner);
 $extensionTop.addEventListener('keydown', updatesBaseliner);
 $extensionOpacity.addEventListener('input', updatesBaseliner);
 $extensionOpacity.addEventListener('keydown', updatesBaseliner);
-
 $extensionBtnRemove.addEventListener('click', removeBaseliner);
+
 
 /* Event Listeners for arrows */
 $arrowtopUp.addEventListener('click', function(){
@@ -118,4 +118,15 @@ $baselinerColor.addEventListener('blur',  function(e){
         color: this.value
     }
     updatesBaseliner(event);
+});
+
+
+/* Init ColorPicker */
+var colors = jsColorPicker('#baselinerColor', {
+    customBG: '#CCCCCC',
+    readOnly: true,
+    init: function(elm, colors) {
+      elm.style.backgroundColor = elm.value;
+      elm.style.color = colors.rgbaMixCustom.luminance > 0.22 ? '#222' : '#ddd';
+    }
 });

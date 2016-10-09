@@ -578,7 +578,7 @@ body,html {
     margin: 0;
     padding: 0;
     background: #10174C;
-    width: 300px;
+    width: 220px;
     height: auto;
     font-family: 'Helvetica', 'Arial', 'non-serif';
 }
@@ -689,11 +689,13 @@ header {
         color: red;
     }
 
+#baselinerColor {
+    width: 100px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
 
-.colorInput {
-    height: 24px;
-    margin-top: 3px;
-    border: none;
-    border-radius: 3px;
-    padding-left: 8px;
+.cp-app {
+    left: 30px!important;
 }
