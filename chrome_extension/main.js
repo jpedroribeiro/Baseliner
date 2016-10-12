@@ -3,6 +3,7 @@
 var $extensionTop        = document.getElementById('baselinerTop');
 var $extensionBaseline   = document.getElementById('baselinerValue');
 var $extensionBtnRemove  = document.getElementById('btnRemoveBaseliner');
+var $extensionBtnApply   = document.getElementById('btnApplyBaseliner');
 var $arrowtopUp          = document.getElementById('topUp');
 var $arrowtopDown        = document.getElementById('topDown');
 var $arrowbaseUp         = document.getElementById('baseUp');
@@ -49,10 +50,10 @@ var updatesBaseliner = function(event){
 };
 
 
-/* Executes removeBaseliner */
+/* Executes removeRules */
 var removeBaseliner = function(){
     chrome.tabs.executeScript({
-        code: 'Baseliner.removeBaseliner()'
+        code: 'Baseliner.removeRules()'
     });
 };
 
@@ -65,6 +66,7 @@ $extensionTop.addEventListener('keydown', updatesBaseliner);
 $extensionOpacity.addEventListener('input', updatesBaseliner);
 $extensionOpacity.addEventListener('keydown', updatesBaseliner);
 $extensionBtnRemove.addEventListener('click', removeBaseliner);
+$extensionBtnApply.addEventListener('click', updatesBaseliner);
 
 
 /* Event Listeners for arrows */

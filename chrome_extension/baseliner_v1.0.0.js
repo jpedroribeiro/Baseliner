@@ -1,7 +1,7 @@
 
 /**
  * Baseliner
-*/
+ */
 
 
 Baseliner = {
@@ -39,6 +39,7 @@ Baseliner = {
 		}
 		// Create style tag
 		Baseliner.$style = document.createElement('style');
+		Baseliner.$style.id = "baselinerStyle"
 
 		// Add tag(s) to head
 		Baseliner.$style.appendChild(document.createTextNode("")); // WebKit hack :(
@@ -84,6 +85,10 @@ Baseliner = {
 			Baseliner.removeRules();
 		}
 		Baseliner.$body.classList.remove('baseliner');
+
+		var styleNode = document.getElementById("baselinerStyle");
+  		styleNode && styleNode.parentNode.removeChild(styleNode);
+
 		console.log('%c Baseliner removed from page. ', 'background: #209C39; color: #DFDFDF');
 	},
 
@@ -92,6 +97,9 @@ Baseliner = {
 	 * Removes CSS rules from Baseliner's styleSheet
 	 */
 	removeRules: function() {
+		// Default rules
+		Baseliner.styleSheet = Baseliner.$style.sheet;
+
 		while ( Baseliner.styleSheet.rules.length > 0) {
 			Baseliner.styleSheet.deleteRule(0);
 		}
