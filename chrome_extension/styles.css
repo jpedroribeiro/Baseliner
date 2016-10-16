@@ -671,21 +671,25 @@ header {
         cursor: pointer;
     }
 
-.removeButton {
+.button {
     color: #9B9B9B;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
     border: none;
     border-top: 1px dashed #9B9B9B;
-    width: 100%;
+    width: 50%;
     background-color: white;
     height: 56px;
     cursor: pointer;
-    transition: color 400ms
+    transition: color 400ms;
+    float: left;
 }
-    .removeButton:hover,
-    .removeButton:focus {
+    .button + .button {
+        border-left: 1px dashed #9B9B9B;
+    }
+    .button:hover,
+    .button:focus {
         color: red;
     }
 
