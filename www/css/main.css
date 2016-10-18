@@ -100,9 +100,9 @@ section {
 
 .widget {
     position: absolute;
-    width: 210px;
+    width: 217px;
     right: 18px;
-    top: 114px;
+    top: 103px;
     transition: 750ms all;
 }
     .widget.before{
