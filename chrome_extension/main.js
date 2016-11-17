@@ -16,7 +16,7 @@ var $forceHeight         = document.getElementById('forceHeight');
 
 
 /* Runs Baseliner script on tab */
-chrome.tabs.executeScript(null, {file: "baseliner_v1.0.0.js"}, function(currentValues){
+chrome.tabs.executeScript(null, {file: "baseliner.js"}, function(currentValues){
     // currentValues is either the default or the current values on data-attribs
     $baselinerColor.value  = currentValues[0][0]
     $extensionBaseline.value = currentValues[0][1];
