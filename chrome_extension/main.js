@@ -30,10 +30,16 @@ var updatesBaseliner = function(event){
     // If Up/Down arrow pressed...
     if (event.keyIdentifier === 'Up' && event.target === $extensionTop) $extensionTop.value++;
     if (event.keyIdentifier === 'Down' && event.target === $extensionTop) $extensionTop.value--;
+    if (event.key === "ArrowUp" && event.target === $extensionTop) $extensionTop.value++;
+    if (event.key === "ArrowDown" && event.target === $extensionTop) $extensionTop.value--;
     if (event.keyIdentifier === 'Up' && event.target === $extensionBaseline) $extensionBaseline.value++;
     if (event.keyIdentifier === 'Down' && event.target === $extensionBaseline) $extensionBaseline.value--;
+    if (event.key === "ArrowUp" && event.target === $extensionBaseline) $extensionBaseline.value++;
+    if (event.key === "ArrowDown" && event.target === $extensionBaseline && $extensionBaseline.value > 2) $extensionBaseline.value--;
     if (event.keyIdentifier === 'Up' && event.target === $extensionOpacity) $extensionOpacity.value++;
     if (event.keyIdentifier === 'Down' && event.target === $extensionOpacity) $extensionOpacity.value--;
+    if (event.key === "ArrowUp" && event.target === $extensionOpacity && $extensionOpacity.value < 100) $extensionOpacity.value++;
+    if (event.key === "ArrowDown" && event.target === $extensionOpacity && $extensionOpacity.value > 0) $extensionOpacity.value--;
     if (event.keyIdentifier === 'setColor') $baselinerColor.value = event.color;
 
     // Set my initial vars with integers
