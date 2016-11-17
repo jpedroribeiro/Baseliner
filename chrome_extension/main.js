@@ -12,6 +12,7 @@ var $extensionOpacity    = document.getElementById('baselinerOpacity');
 var $arrowOpacityUp      = document.getElementById('opacityUp');
 var $arrowOpacityDown    = document.getElementById('opacityDown');
 var $baselinerColor      = document.getElementById('baselinerColor');
+var $forceHeightToggle    = document.getElementById('forceHeightToggle');
 
 
 /* Runs Baseliner script on tab */
@@ -45,7 +46,7 @@ var updatesBaseliner = function(event){
     // Executes Baseliner update script
     chrome.tabs.executeScript({
 
-        code: 'Baseliner.update("' + newColor + '",' + newBase + ',' + newTop + ',' + newOpacity + ')'
+        code: 'Baseliner.update("' + newColor + '",' + newBase + ',' + newTop + ',' + newOpacity + ',' + !forceHeight.checked + ')'
     });
 };
 
@@ -65,6 +66,7 @@ $extensionTop.addEventListener('input', updatesBaseliner);
 $extensionTop.addEventListener('keydown', updatesBaseliner);
 $extensionOpacity.addEventListener('input', updatesBaseliner);
 $extensionOpacity.addEventListener('keydown', updatesBaseliner);
+$forceHeightToggle.addEventListener('click', updatesBaseliner);
 $extensionBtnRemove.addEventListener('click', removeBaseliner);
 $extensionBtnApply.addEventListener('click', updatesBaseliner);
 

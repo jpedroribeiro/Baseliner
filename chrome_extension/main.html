@@ -14,38 +14,45 @@
 <section class="baseliner">
   <fieldset class="fieldLine fromTop">
       <img src="line-color.svg">
-      <input id="baselinerColor" class="fieldInput" value="#CCCCCC" data-colormode="HEX" readonly="">
+      <input id="baselinerColor" class="fieldInput" value="#CCCCCC" data-colormode="HEX" readonly="" tabindex="-1">
   </fieldset>
 
     <fieldset class="fieldLine fromTop">
         <img src="height-from-top.svg">
-        <input type="text" id="baselinerTop" class="fieldInput" tabindex="1">
+        <input type="text" id="baselinerTop" class="fieldInput">
         <label for="baselinerTop">px</label>
         <div class="arrowsContainer">
-            <input type="button" id="topUp" class="arrowUp" tabindex="-1">
-            <input type="button" id="topDown" class="arrowDown" tabindex="-1">
+            <input type="button" id="topUp" class="arrowUp"">
+            <input type="button" id="topDown" class="arrowDown"">
         </div>
     </fieldset>
 
 
     <fieldset class="fieldLine fromTop">
         <img src="line-height.svg">
-        <input type="text" id="baselinerValue" class="fieldInput" tabindex="2">
+        <input type="text" id="baselinerValue" class="fieldInput">
         <label for="baselinerValue">px</label>
         <div class="arrowsContainer">
-            <input type="button" id="baseUp" class="arrowUp" tabindex="-1">
-            <input type="button" id="baseDown" class="arrowDown" tabindex="-1">
+            <input type="button" id="baseUp" class="arrowUp"">
+            <input type="button" id="baseDown" class="arrowDown"">
         </div>
     </fieldset>
 
+
     <fieldset class="fieldLine fromTop">
         <img src="line-opacity.svg">
-        <input type="text" id="baselinerOpacity" class="fieldInput" tabindex="2">
+        <input type="text" id="baselinerOpacity" class="fieldInput">
         <label for="baselinerOpacity">%</label>
         <div class="arrowsContainer">
-            <input type="button" id="opacityUp" class="arrowUp" tabindex="-1">
-            <input type="button" id="opacityDown" class="arrowDown" tabindex="-1">
+            <input type="button" id="opacityUp" class="arrowUp"">
+            <input type="button" id="opacityDown" class="arrowDown"">
         </div>
+    </fieldset>
+
+
+    <fieldset class="fieldLine fromTop forceHeight">
+        <label for="forceHeight" id='forceHeightToggle' title="Adds 'body {height: auto}' to ensure grid is repeated all the way to the bottom of the page.">Force height</label>
+        <input type="checkbox" id="forceHeight">
     </fieldset>
 
 

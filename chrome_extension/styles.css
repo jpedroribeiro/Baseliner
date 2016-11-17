@@ -703,3 +703,43 @@ header {
 .cp-app {
     left: 30px!important;
 }
+
+
+.forceHeight {
+    height: auto;
+    text-align: right;
+}
+
+    .forceHeight label {
+        padding-right: 33px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .forceHeight [type=checkbox] {
+        font-size: 0;
+        width: 0;
+        height: 0;
+        position: relative;
+    }
+
+    .forceHeight [type=checkbox]:after {
+        cursor: pointer;
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        left: -21px;
+        top: -16px;
+        background: #f5f5f5;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+    .forceHeight [type=checkbox]:checked:after {
+            content: '\00d7';
+            font-size: 24px;
+            text-align: center;
+            line-height: 12px;
+            color: #10174C;
+    }
