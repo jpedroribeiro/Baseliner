@@ -15,7 +15,7 @@ For better experience, you can now change the **colour** of the lines as well as
 ### Force height
 Some websites set `height: 100%` to the body tag making its size to match the viewport. If you scroll down, Baseliner won't be repeated anymore due to being attached to the body tag.
 
-By ticking the **Force height** checkbox, we overwrite that property: `body {height: auto}`, enabling Baseliner to repeat itselt until the bottom of the page.
+By ticking the **Force height** checkbox, we overwrite that property: `body {height: auto}`, enabling Baseliner to repeat itself until the bottom of the page.
 
 ## Installation
 Baseliner is a Chrome extension and can be found at the Chrome Web Store - https://chrome.google.com/webstore/detail/baseliner/agoopbiflnjadjfbhimhlmcbgmdgldld

@@ -598,7 +598,7 @@ header {
 
 
 .baseliner {
-    padding: 30px;
+    padding: 30px 25px;
     background: white;
 }
 
@@ -607,7 +607,8 @@ header {
         font-size: 24px;
         color: #10174C;
         border: none;
-        width: 40px;
+        width: 60px;
+        white-space: nowrap;
         text-align: right;
     }
 
@@ -649,7 +650,7 @@ header {
 .arrowsContainer {
     width: 16px;
     position: absolute;
-    left: 140px;
+    left: 150px;
     top: 0;
 }
     .arrowUp {
@@ -694,7 +695,7 @@ header {
     }
 
 #baselinerColor {
-    width: 100px;
+    width: 114px;
     font-size: 20px;
     text-align: center;
     border-radius: 4px;
@@ -704,6 +705,21 @@ header {
     left: 30px!important;
 }
 
+
+/**
+ * These lines are to  to overwrite the jscolor plugin 
+ * classes and hide opacity menu from the popup.
+ *
+ * This is to avoid a rgba notation and don't collide with the opacity 
+ * settings in Baseliner.
+ */
+.cp-opacity, .cp-memo {
+    display: none!important;
+}
+
+.XS {
+    height: 144px!important;
+}
 
 .forceHeight {
     height: auto;
