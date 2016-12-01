@@ -637,6 +637,7 @@ header {
     width: 100%;
     overflow: hidden;
     position: relative;
+    white-space: nowrap;
 }
     .fieldLine:last-child {
         margin-bottom: 0;
