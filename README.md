@@ -5,7 +5,7 @@ Baseliner
 
 **Baseliner** is a Chrome extension for perfectionist Front-End Developers and UX Designers.
 
-This tool will add an **SVG** grid layer on top of any website to be used as a guidance when developing interfaces. 
+This tool will add grid layer on top of any website to be used as a guidance when developing interfaces. 
 
 ## Features
 You can set the **horizontal** guides to match your specification as well as the **starting point**, in case you're only concerned about individual modules of your site.
