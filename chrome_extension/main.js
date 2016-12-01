@@ -21,7 +21,8 @@ chrome.tabs.executeScript(null, {file: "baseliner.js"}, function(currentValues){
     $baselinerColor.value  = currentValues[0][0]
     $extensionBaseline.value = currentValues[0][1];
     $extensionTop.value = currentValues[0][2];
-    $extensionOpacity.value = currentValues[0][3]
+    $extensionOpacity.value = currentValues[0][3];
+    $forceHeight.checked = currentValues[0][4];
 });
 
 
@@ -36,8 +37,8 @@ var updatesBaseliner = function(event){
     if (event.keyIdentifier === 'Down' && event.target === $extensionBaseline) $extensionBaseline.value--;
     if (event.key === "ArrowUp" && event.target === $extensionBaseline) $extensionBaseline.value++;
     if (event.key === "ArrowDown" && event.target === $extensionBaseline && $extensionBaseline.value > 2) $extensionBaseline.value--;
-    if (event.keyIdentifier === 'Up' && event.target === $extensionOpacity) $extensionOpacity.value++;
-    if (event.keyIdentifier === 'Down' && event.target === $extensionOpacity) $extensionOpacity.value--;
+    if (event.keyIdentifier === 'Up' && event.target === $extensionOpacity && $extensionOpacity.value < 100) $extensionOpacity.value++;
+    if (event.keyIdentifier === 'Down' && event.target === $extensionOpacity && $extensionOpacity.value > 0) $extensionOpacity.value--;
     if (event.key === "ArrowUp" && event.target === $extensionOpacity && $extensionOpacity.value < 100) $extensionOpacity.value++;
     if (event.key === "ArrowDown" && event.target === $extensionOpacity && $extensionOpacity.value > 0) $extensionOpacity.value--;
     if (event.keyIdentifier === 'setColor') $baselinerColor.value = event.color;
@@ -47,12 +48,14 @@ var updatesBaseliner = function(event){
     var newBase = $extensionBaseline.value;
     var newColor = $baselinerColor.value;
     var newOpacity = $extensionOpacity.value;
+    var newForce = forceHeight.checked;
+
     console.log('updatesBaseliner');
 
     // Executes Baseliner update script
     chrome.tabs.executeScript({
 
-        code: 'Baseliner.update("' + newColor + '",' + newBase + ',' + newTop + ',' + newOpacity + ',' + forceHeight.checked + ')'
+        code: 'Baseliner.update("' + newColor + '",' + newBase + ',' + newTop + ',' + newOpacity + ',' + newForce + ')'
     });
 };
 
