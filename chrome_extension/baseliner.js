@@ -18,23 +18,32 @@ Baseliner = {
 	/**
 	 * Initialises application
 	 */
-	init: function(){
-
+	init: function () {
 		// SETUP: Update object's properties
-		Baseliner.$body = document.getElementsByTagName('body')[0];
-		Baseliner.$head = document.getElementsByTagName('head')[0];
+		this.$body = document.getElementsByTagName('body')[0];
+		this.$head = document.getElementsByTagName('head')[0];
 
 		// Was Baseliner loaded yet?...
-		if ( Baseliner.findInArray('baseliner', Baseliner.$body.classList) ){
+		if ( this.findInArray('baseliner', this.$body.classList) ){
 			// ...then lets update the default values with the ones used on current site
 			this.baseline = this.getBaselineDataAttribute();
 			this.baselineTop = this.getTopDataAttribute();
 			this.baselineColor = this.getColorDataAttribute();
 			this.baselineOpacity = this.getOpacityDataAttribute();
 			this.baselineForceHeight = this.getForceHeightDataAttribute();
-
-			Baseliner.removeBaseliner();
 		}
+
+		return this.setup(this.baseline, this.baselineTop, this.baselineColor, this. baselineOpacity, this.baselineForceHeight, true);
+	},
+
+	/**
+	*	Main setup, decoupled from init to enable different setups from data/storage
+	* 	@param ...
+	*	@param firstRunFlag - disables saving to storage on first run to avoid saving defaults
+	*/
+	setup: function (baseline, top, color, opacity, forceHeight, firstRunFlag) {
+		Baseliner.removeBaseliner();
+
 		// Create style tag
 		Baseliner.$style = document.createElement('style');
 		Baseliner.$style.id = "baselinerStyle"
@@ -49,12 +58,64 @@ Baseliner = {
 		// Message
 		console.log('%c Baseliner added to page. ', 'background: #209C39; color: #DFDFDF');
 
-		// Initialises with hardcoded default values
-		Baseliner.update(this.baselineColor, this.baseline, this.baselineTop, this.baselineOpacity, this.baselineForceHeight);
+		// Initialises with object values
+		Baseliner.update(baseline, top, color, opacity, forceHeight, !!firstRunFlag);
 
 		// ...and send them back to the Extension tab (main.js)
-		return [this.baselineColor, this.baseline, this.baselineTop, this.baselineOpacity, this.baselineForceHeight];
+		return [baseline, top, color, opacity, forceHeight];
 	},
+
+	/**
+	*	Check if Baseliner has any data on Storage
+	*
+	*	async
+	*/
+	checkForBaselinerInStorage: function () {
+		var url = window.location.href;
+		chrome.storage.sync.get(url, function (data) {
+			var item = data[url];
+			if (item) {
+				// All done!
+				console.log('%c Baseliner loaded from Storage 🗄 ', 'background: #DFDFDF; color: #209C39');
+				Baseliner.setup(item.baseline, item.top, item.color, item.opacity, item.forceHeight);
+
+				// Tells extension we got data
+				chrome.runtime.sendMessage({data: item});
+			}
+		});
+	},
+
+
+	/**
+	*	Save/update current Baseliner data into Storage for future use
+	*	@param url
+	*	@param baseline
+	*	@param top
+	*	@param color
+	*	@param opacity
+	*	@param forceHeight
+	*	
+	*	async
+	*/
+	storeBaseliner: function (url, baseline, top, color, opacity, forceHeight) {
+		var saveObj = {},
+			current = {
+			baseline: baseline,
+			top: top,
+			color: color,
+			opacity: opacity,
+			forceHeight: forceHeight
+		};
+
+		saveObj[url] = current;
+
+		if (!!url) {
+			chrome.storage.sync.set(saveObj, function () {
+				console.log('%c Baseliner data saved to storage 💾', 'background: #DFDFDF; color: #209C39')
+			});
+		}
+	},
+
 
 	/**
 	 * Convert color from hex to rgb
@@ -75,6 +136,7 @@ Baseliner = {
 		} : null;
 	},
 
+
 	/**
 	 * Add CSS rules into Baseliner's styleSheet
 	 * @param color
@@ -83,7 +145,7 @@ Baseliner = {
 	 * @param opacity
 	 * @param forceHeightFlag
 	 */
-	addRules: function(color, top, height, opacity, forceHeightFlag) {
+	addRules: function(height, top, color, opacity, forceHeightFlag) {
 		// Default rules
 		Baseliner.styleSheet = Baseliner.$style.sheet;
 		Baseliner.styleSheet.insertRule(".baseliner { position: relative; }", 0);
@@ -132,19 +194,27 @@ Baseliner = {
 
 	/**
 	 * Updates Baseliner with new values
-	 * @param newColor
 	 * @param newBaseline
 	 * @param newTop
+	 * @param newColor
 	 * @param newOpacity
 	 * @param forceHeightFlag
 	 */
-	update: function(newColor, newBaseline, newTop, newOpacity, forceHeightFlag) {
+	update: function(newBaseline, newTop, newColor, newOpacity, forceHeightFlag, firstRunFlag) {
 
 		if ( !!Baseliner.styleSheet ) Baseliner.removeRules();
-		Baseliner.addRules(newColor, newTop, newBaseline, newOpacity, forceHeightFlag);
-		Baseliner.setDataAttributes(newColor, newBaseline, newTop, newOpacity, forceHeightFlag);
+
+		Baseliner.addRules(newBaseline, newTop, newColor, newOpacity, forceHeightFlag);
+
+		Baseliner.setDataAttributes(newBaseline, newTop, newColor, newOpacity, forceHeightFlag);
+
+		if (!firstRunFlag) {
+			Baseliner.storeBaseliner(window.location.href, newBaseline, newTop, newColor, newOpacity, forceHeightFlag);
+		}
+
 		console.log('%c Baseliner has a new baseline of ' + newBaseline + '. starting at ' + parseInt(newTop) + '.', 'background: #DFDFDF; color: #209C39');
 	},
+
 
 	/**
 	 * Find a needle in a haystack
@@ -152,7 +222,7 @@ Baseliner = {
 	 * @param haystack
 	 * @returns {boolean}
 	 */
-	findInArray: function ( needle, haystack ) {
+	findInArray: function (needle, haystack) {
 		var res = false;
 		haystack.forEach(function(element, index, array){
 			if (element == needle) res = true;
@@ -160,21 +230,23 @@ Baseliner = {
 		return res;
 	},
 
+
 	/**
 	 * Add values to body as data attributes for reusability
-	 * @param color
 	 * @param baseline
 	 * @param top
+	 * @param color
 	 * @param opacity
 	 * @param force
 	 */
-	setDataAttributes: function(color, baseline, top, opacity, force){
-		this.$body.setAttribute('blnr-color', color);
+	setDataAttributes: function(baseline, top, color, opacity, force){
 		this.$body.setAttribute('blnr-bas', baseline);
 		this.$body.setAttribute('blnr-top', top);
+		this.$body.setAttribute('blnr-color', color);
 		this.$body.setAttribute('blnr-opacity', opacity);
 		this.$body.setAttribute('blnr-force', force);
 	},
+
 
 	/**
 	 * Returns baseline value from body if present
@@ -188,6 +260,7 @@ Baseliner = {
 		}
 	},
 
+
 	/**
 	 * Returns top value from body if present
 	 * @returns {*}
@@ -199,6 +272,7 @@ Baseliner = {
 			return false;
 		}
 	},
+
 
 	/**
 	 * Returns color value from body if present
@@ -212,6 +286,7 @@ Baseliner = {
 		}
 	},
 
+
 	/**
 	 * Returns opacity value from body if present
 	 * @returns {*}
@@ -223,6 +298,7 @@ Baseliner = {
 			return false;
 		}
 	},
+
 
 	/**
 	 * Returns force height flag value from body if present

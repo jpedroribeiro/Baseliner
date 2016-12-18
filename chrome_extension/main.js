@@ -17,13 +17,31 @@ var $forceHeight         = document.getElementById('forceHeight');
 
 /* Runs Baseliner script on tab */
 chrome.tabs.executeScript(null, {file: "baseliner.js"}, function(currentValues){
-    // currentValues is either the default or the current values on data-attribs
-    $baselinerColor.value  = currentValues[0][0]
-    $extensionBaseline.value = currentValues[0][1];
-    $extensionTop.value = currentValues[0][2];
-    $extensionOpacity.value = currentValues[0][3];
-    $forceHeight.checked = currentValues[0][4];
+    if (!!currentValues[0]){
+        // currentValues is either the default or the current values on data-attribs
+        $extensionBaseline.value = currentValues[0][0];
+        $extensionTop.value = currentValues[0][1];
+        $baselinerColor.value  = currentValues[0][2]
+        $extensionOpacity.value = currentValues[0][3];
+        $forceHeight.checked = currentValues[0][4];
+    }
+
+    chrome.tabs.executeScript({code: 'Baseliner.checkForBaselinerInStorage()'});
 });
+
+
+/* Listening to messages, in this case, for Storage update */
+chrome.runtime.onMessage.addListener(
+  function(request) {console.log(request);
+    if (request.data) {
+        $extensionBaseline.value = request.data.baseline;
+        $extensionTop.value = request.data.top;
+        $baselinerColor.value  = request.data.color;
+        $extensionOpacity.value = request.data.opacity;
+        $forceHeight.checked = request.data.forceHeight;
+    }
+});
+
 
 
 /* Executes || Updates Baseliner */
@@ -54,8 +72,7 @@ var updatesBaseliner = function(event){
 
     // Executes Baseliner update script
     chrome.tabs.executeScript({
-
-        code: 'Baseliner.update("' + newColor + '",' + newBase + ',' + newTop + ',' + newOpacity + ',' + newForce + ')'
+        code: 'Baseliner.update(' + newBase + ',' + newTop + ',"' + newColor + '",' + newOpacity + ',' + newForce + ')'
     });
 };
 
@@ -132,7 +149,6 @@ $baselinerColor.addEventListener('blur',  function(e){
     }
     updatesBaseliner(event);
 });
-
 
 /* Init ColorPicker */
 var colors = jsColorPicker('#baselinerColor', {

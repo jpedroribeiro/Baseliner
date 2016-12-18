@@ -3,7 +3,7 @@
   "name": "Baseliner",
   "short_name": "Baseliner",
   "description": "An extension for designers and developers who care about vertical rhythm.",
-  "version": "5.1",
+  "version": "5.3",
   "author": "J. Pedro Ribeiro",
   "homepage_url": "http://baseliner.jpedroribeiro.com/",
   "browser_action": {
@@ -15,8 +15,11 @@
     "48": "icon48.png",
     "128": "icon128.png" },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "web_accessible_resources": [
-    "line.svg", "main.js"]
+    "line.svg",
+    "main.js"
+  ]
 }
