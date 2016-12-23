@@ -71,7 +71,7 @@ Baseliner = {
 	*	async
 	*/
 	checkForBaselinerInStorage: function () {
-		var url = window.location.href;
+		var url = window.location.origin;
 		chrome.storage.sync.get(url, function (data) {
 			var item = data[url];
 			if (item) {
@@ -209,7 +209,7 @@ Baseliner = {
 		Baseliner.setDataAttributes(newBaseline, newTop, newColor, newOpacity, forceHeightFlag);
 
 		if (!firstRunFlag) {
-			Baseliner.storeBaseliner(window.location.href, newBaseline, newTop, newColor, newOpacity, forceHeightFlag);
+			Baseliner.storeBaseliner(window.location.origin, newBaseline, newTop, newColor, newOpacity, forceHeightFlag);
 		}
 
 		console.log('%c Baseliner has a new baseline of ' + newBaseline + '. starting at ' + parseInt(newTop) + '.', 'background: #DFDFDF; color: #209C39');
