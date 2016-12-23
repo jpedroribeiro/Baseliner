@@ -21,4 +21,12 @@ Some websites set `height: 100%` to the body tag making its size to match the vi
 By ticking the **Force height** checkbox, we overwrite that property: `body {height: auto}`, enabling Baseliner to repeat itself until the bottom of the page.
 
 ## Installation
-Baseliner is a Chrome extension and can be found at the Chrome Web Store - https://chrome.google.com/webstore/detail/baseliner/agoopbiflnjadjfbhimhlmcbgmdgldld
+Baseliner is a **Chrome extension** and can be found at the Chrome Web Store - https://chrome.google.com/webstore/detail/baseliner/agoopbiflnjadjfbhimhlmcbgmdgldld
+
+### Manual Installation
+You can also install Baseliner without using the Chrome Store, this is helpful if you want to use a new feature that was no published yet.
+
+1. Download this repo as a Zip file and extract it into a folder
+1. Open Chrome Extensions page: `chrome://extensions/`
+1. Click `Load unpacked extension`
+1. Find the folder from **#1** and select it
