@@ -21,5 +21,10 @@
   "web_accessible_resources": [
     "line.svg",
     "main.js"
-  ]
+  ],
+  "applications": {
+     "gecko": {
+        "id": "contact@jpedroribeiro.com"
+    }
+  }
 }

@@ -186,7 +186,7 @@ Baseliner = {
 		// Default rules
 		Baseliner.styleSheet = Baseliner.$style.sheet;
 
-		while ( Baseliner.styleSheet.rules.length > 0) {
+		while (Baseliner.styleSheet.cssRules.length > 0) {
 			Baseliner.styleSheet.deleteRule(0);
 		}
 	},
