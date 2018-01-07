@@ -22,5 +22,10 @@
 		"128": "icon128.png"
 	},
 	"permissions": ["activeTab", "storage"],
-	"web_accessible_resources": ["line.svg", "main.js"]
+	"web_accessible_resources": ["line.svg", "main.js"],
+	"applications": {
+		"gecko": {
+			"id": "contact@jpedroribeiro.com"
+		}
+	}
 }
