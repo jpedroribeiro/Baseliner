@@ -9,11 +9,11 @@ function Popup() {
   const [hasStartedUp, setHasStartedUp] = React.useState(false);
   const [statusLabel, setStatusLabel] = React.useState("loading...");
   const [enableVertical, setEnableVertical] = React.useState(true);
-  const [colourVertical, setColourVertical] = React.useState("#ff0000");
+  const [colourVertical, setColourVertical] = React.useState("#0829d0");
   const [opacityVertical, setOpacityVertical] = React.useState(100);
   const [baselineVertical, setBaselineVertical] = React.useState(8);
   const [enableHorizontal, setEnableHorizontal] = React.useState(false);
-  const [colourHorizontal, setColourHorizontal] = React.useState("#00ff00");
+  const [colourHorizontal, setColourHorizontal] = React.useState("#cd4d28");
   const [opacityHorizontal, setOpacityHorizontal] = React.useState(100);
   const [baselineHorizontal, setBaselineHorizontal] = React.useState(8);
 
@@ -25,6 +25,7 @@ function Popup() {
     } else {
       setEnableHorizontal(checked);
     }
+
   }
   function handleColour(e) {
     const grid = e.currentTarget.dataset.grid;
@@ -33,6 +34,7 @@ function Popup() {
     } else {
       setColourHorizontal(e.currentTarget.value);
     }
+
   }
 
   function handleBaseline(e) {
@@ -42,6 +44,7 @@ function Popup() {
     } else {
       setBaselineHorizontal(e.currentTarget.value);
     }
+
   }
 
   function handleOpacity(e) {
@@ -51,6 +54,7 @@ function Popup() {
     } else {
       setOpacityHorizontal(e.currentTarget.value);
     }
+
   }
 
   React.useEffect(() => {
@@ -330,9 +334,9 @@ function Popup() {
           Feedback?
         </a>
         <a
-          href={"https://github.com/jpedroribeiro/Baseliner/issues"}
+          href={"https://ko-fi.com/jpedroribeiro"}
           target={"_blank"}
-          title={"Removes Baseliner from the page"}
+          title={"Help the project grow by making a small contribution!"}
         >
           Support Us
         </a>

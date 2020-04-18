@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.ee4e6a18.chunk.css",
-    "main.js": "/static/js/main.b867fdb7.chunk.js",
-    "main.js.map": "/static/js/main.b867fdb7.chunk.js.map",
+    "main.js": "/static/js/main.ccd34afc.chunk.js",
+    "main.js.map": "/static/js/main.ccd34afc.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.9a105661.js",
     "runtime~main.js.map": "/static/js/runtime~main.9a105661.js.map",
     "static/js/2.e477b35b.chunk.js": "/static/js/2.e477b35b.chunk.js",
     "static/js/2.e477b35b.chunk.js.map": "/static/js/2.e477b35b.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.ddf8dea76a17261e6a6d70736f55d862.js": "/precache-manifest.ddf8dea76a17261e6a6d70736f55d862.js",
+    "precache-manifest.15f382f1f4f0d7a9851ffb01073f5f0b.js": "/precache-manifest.15f382f1f4f0d7a9851ffb01073f5f0b.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.ee4e6a18.chunk.css.map": "/static/css/main.ee4e6a18.chunk.css.map",
     "static/media/Popup.css": "/static/media/Dosis.e610de88.woff"

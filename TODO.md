@@ -1,8 +1,4 @@
-WIP
-
 # TODO
-(1) Nicer UI design
-(1.5) Move defaults to object
 (2) Add Typescript
 (3) GA events?
 (4) Domain and website?
