@@ -1,0 +1,33 @@
+{
+  "name": "baseliner-extension",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "bak_build": "react-scripts build",
+    "build": "react-scripts build && yarn run copy-baseliner-file",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "copy-baseliner-file": "cp src/baseliner.js build/baseliner.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
