@@ -2,7 +2,7 @@
 window.Baseliner = {
   styleTagID: "baselinerStyleEl",
 
-  setup: function() {
+  setup: function () {
     // Add Baseliner class to body
     document.body.classList.add("baseliner");
 
@@ -17,7 +17,7 @@ window.Baseliner = {
     this.startUp();
   },
 
-  generateStyles: function(
+  generateStyles: function (
     verticalRed,
     verticalBlue,
     verticalGreen,
@@ -29,9 +29,11 @@ window.Baseliner = {
     horizontalGreen,
     horizontalOpacity,
     horizontalBaseline,
-    horizontalEnable
+    horizontalEnable,
+    topOffset,
+    forceStyles
   ) {
-    const baselinerPaddingTop = 0; // Note: disabling this feature for now
+    const baselinerPaddingTop = topOffset;
     const sheet = document.getElementById(this.styleTagID).sheet;
 
     /*language=LESS*/
@@ -43,16 +45,17 @@ window.Baseliner = {
         position: relative;
       }`,
       `.baseliner:after {
-        position: absolute;
-        width: auto;
-        height: auto;
-        z-index: 9999;
-        content: "";
-        display: block;
-        pointer-events: none;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        clip: unset${forceStyles ? "!important" : ""};
+        position: absolute${forceStyles ? "!important" : ""};
+        width: auto${forceStyles ? "!important" : ""};
+        height: auto${forceStyles ? "!important" : ""};
+        z-index: 9999${forceStyles ? "!important" : ""};
+        content: ""${forceStyles ? "!important" : ""};
+        display: block${forceStyles ? "!important" : ""};
+        pointer-events: none${forceStyles ? "!important" : ""};
+        right: 0${forceStyles ? "!important" : ""};
+        bottom: 0${forceStyles ? "!important" : ""};
+        left: 0${forceStyles ? "!important" : ""};
         background: linear-gradient(to right,
             rgba(${verticalRed}, ${verticalGreen}, ${verticalBlue}, ${
         verticalEnable ? verticalOpacity / 100 : 0
@@ -66,12 +69,14 @@ window.Baseliner = {
       }) 1px,
             transparent 1px
           )
-          left top / 100% ${horizontalBaseline}px repeat-y;
-        top: ${baselinerPaddingTop}px;
+          left top / 100% ${horizontalBaseline}px repeat-y${
+        forceStyles ? "!important" : ""
+      };
+        top: ${baselinerPaddingTop}px${forceStyles ? "!important" : ""};
       }`,
       `body {
-        height: auto;
-      }`
+        height: auto${forceStyles ? "!important" : ""};
+      }`,
     ];
 
     // Remove previous styles
@@ -82,7 +87,7 @@ window.Baseliner = {
     }
 
     // Apply new styles
-    stylesArray.forEach(styleRule => {
+    stylesArray.forEach((styleRule) => {
       sheet.insertRule(styleRule);
     });
 
@@ -101,16 +106,18 @@ window.Baseliner = {
         horizontalGreen,
         horizontalOpacity,
         horizontalBaseline,
-        horizontalEnable
-      }
+        horizontalEnable,
+        topOffset,
+        forceStyles,
+      },
     });
   },
 
-  startUp: function() {
+  startUp: function () {
     const url = window.location.origin;
 
     // Check storage first
-    chrome.storage.sync.get(url, data => {
+    chrome.storage.sync.get(url, (data) => {
       const item = data[url];
 
       if (item) {
@@ -129,13 +136,13 @@ window.Baseliner = {
     });
   },
 
-  saveToStorage: function(objOfValues) {
+  saveToStorage: function (objOfValues) {
     const url = window.location.origin;
     const save = {};
     save[url] = objOfValues;
 
     if (!!url) {
-      chrome.storage.sync.set(save, function() {
+      chrome.storage.sync.set(save, function () {
         console.log(
           `%c Baseliner ${
             objOfValues ? "data saved to storage 💾" : " storage cleared 🗑"
@@ -145,7 +152,7 @@ window.Baseliner = {
         );
       });
     }
-  }
+  },
 };
 
 Baseliner.setup();

@@ -8,6 +8,8 @@ function Popup() {
   const ENV_EXTENSION = chrome && chrome.tabs;
   const [hasStartedUp, setHasStartedUp] = React.useState(false);
   const [statusLabel, setStatusLabel] = React.useState("loading...");
+  const [topOffset, setTopOffset] = React.useState(0);
+  const [forceStyles, setForceStyles] = React.useState(false);
   const [enableVertical, setEnableVertical] = React.useState(true);
   const [colourVertical, setColourVertical] = React.useState("#0829d0");
   const [opacityVertical, setOpacityVertical] = React.useState(100);
@@ -17,6 +19,15 @@ function Popup() {
   const [opacityHorizontal, setOpacityHorizontal] = React.useState(100);
   const [baselineHorizontal, setBaselineHorizontal] = React.useState(8);
 
+  function handleTopOffset(e) {
+    setTopOffset(e.currentTarget.value);
+  }
+
+  function handleForceStyles(e) {
+    const checked = e.currentTarget.checked;
+    setForceStyles(checked);
+  }
+
   function handleEnable(e) {
     const grid = e.currentTarget.dataset.grid;
     const checked = e.currentTarget.checked;
@@ -25,8 +36,8 @@ function Popup() {
     } else {
       setEnableHorizontal(checked);
     }
-
   }
+
   function handleColour(e) {
     const grid = e.currentTarget.dataset.grid;
     if (grid === "vertical") {
@@ -34,7 +45,6 @@ function Popup() {
     } else {
       setColourHorizontal(e.currentTarget.value);
     }
-
   }
 
   function handleBaseline(e) {
@@ -44,7 +54,6 @@ function Popup() {
     } else {
       setBaselineHorizontal(e.currentTarget.value);
     }
-
   }
 
   function handleOpacity(e) {
@@ -54,7 +63,6 @@ function Popup() {
     } else {
       setOpacityHorizontal(e.currentTarget.value);
     }
-
   }
 
   React.useEffect(() => {
@@ -64,7 +72,7 @@ function Popup() {
       chrome.tabs.executeScript(null, { file: "/baseliner.js" });
 
       // Start listening to messages
-      chrome.runtime.onMessage.addListener(function(message) {
+      chrome.runtime.onMessage.addListener(function (message) {
         switch (message?.status) {
           case "default":
             setStatusLabel("Baseliner extension ready with defaults");
@@ -89,8 +97,10 @@ function Popup() {
                 horizontalGreen: ${message.objOfValues.horizontalGreen},
                 horizontalOpacity: ${message.objOfValues.horizontalOpacity},
                 horizontalBaseline: ${message.objOfValues.horizontalBaseline},
-                horizontalEnable: ${message.objOfValues.horizontalEnable}
-              })`
+                horizontalEnable: ${message.objOfValues.horizontalEnable},
+                topOffset: ${message.objOfValues.topOffset},
+                forceStyles: ${message.objOfValues.forceStyles}
+              })`,
             });
             break;
 
@@ -109,8 +119,10 @@ function Popup() {
                 horizontalGreen,
                 horizontalOpacity,
                 horizontalBaseline,
-                horizontalEnable
-              }
+                horizontalEnable,
+                topOffset,
+                forceStyles,
+              },
             } = message;
             setColourHorizontal(
               rgbToHex(horizontalRed, horizontalGreen, horizontalBlue)
@@ -124,6 +136,8 @@ function Popup() {
             setOpacityVertical(verticalOpacity);
             setBaselineVertical(verticalBaseline);
             setEnableVertical(verticalEnable);
+            setTopOffset(topOffset);
+            setForceStyles(forceStyles);
 
             // Generate and apply styles
             chrome.tabs.executeScript({
@@ -139,8 +153,10 @@ function Popup() {
                 ${horizontalGreen},
                 ${horizontalOpacity},
                 ${horizontalBaseline},
-                ${horizontalEnable}
-              )`
+                ${horizontalEnable},
+                ${topOffset},
+                ${forceStyles}
+              )`,
             });
             break;
 
@@ -165,7 +181,7 @@ function Popup() {
         blue: colourVerticalRGB.b,
         opacity: opacityVertical,
         baseline: baselineVertical,
-        enable: enableVertical
+        enable: enableVertical,
       };
       const colourHorizontalRGB = hexToRGB(colourHorizontal);
       const horizontal = {
@@ -174,7 +190,7 @@ function Popup() {
         blue: colourHorizontalRGB.b,
         opacity: opacityHorizontal,
         baseline: baselineHorizontal,
-        enable: enableHorizontal
+        enable: enableHorizontal,
       };
 
       // Generate and apply styles
@@ -191,8 +207,10 @@ function Popup() {
           ${horizontal.green}, 
           ${horizontal.opacity},
           ${horizontal.baseline},
-          ${horizontal.enable}
-        )`
+          ${horizontal.enable},
+          ${topOffset},
+          ${forceStyles}
+        )`,
       });
     }
   }, [
@@ -205,7 +223,9 @@ function Popup() {
     baselineVertical,
     baselineHorizontal,
     enableVertical,
-    enableHorizontal
+    enableHorizontal,
+    topOffset,
+    forceStyles,
   ]);
 
   return (
@@ -273,6 +293,7 @@ function Popup() {
           />
         </div>
       </div>
+
       <div className={`grid horizontal${enableHorizontal ? "" : " disabled"}`}>
         <h2>Horizontal</h2>
         <div className={"row checkbox"}>
@@ -325,6 +346,39 @@ function Popup() {
           />
         </div>
       </div>
+
+      <div className={"grid-duo"}>
+        <div className={`grid`}>
+          <h2>Offset</h2>
+          <div className={"row"}>
+            <label htmlFor={"topOffset"}>Top</label>
+            <input
+              type="number"
+              min={0}
+              id="topOffset"
+              value={topOffset}
+              onChange={handleTopOffset}
+            />
+          </div>
+        </div>
+
+        <div className={`grid`}>
+          <h2>Force Styles</h2>
+          <div className="row">
+            <label className={"label-tweak"}>Enable</label>
+          </div>
+          <div className={"row checkbox checkbox-inline"}>
+            <input
+              type="checkbox"
+              id="forceStyles"
+              checked={forceStyles}
+              onChange={handleForceStyles}
+            />
+            <label htmlFor={"forceStyles"}>Enable</label>
+          </div>
+        </div>
+      </div>
+
       <div className={"footer"}>
         <a
           href={"https://github.com/jpedroribeiro/Baseliner/issues"}

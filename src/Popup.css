@@ -52,6 +52,19 @@ h1 a {
     color: var(--brightRedDark)
 }
 
+.grid-duo {
+    display: flex;
+}
+
+.grid-duo .grid {
+    flex-basis: 50%;
+    margin-top: 0;
+}
+
+.grid-duo .row input[type="number"] {
+    max-width: 40px;
+}
+
 .grid {
     margin: 16px 4px 20px;
     padding: 20px 8px 0;
@@ -88,7 +101,15 @@ h2 {
     background: white;
 }
 
-input[type=checkbox]{
+.checkbox.checkbox-inline {
+    top: 16px;
+}
+
+.label-tweak {
+    line-height: 19px;
+}
+
+.checkbox input[type=checkbox]{
     position: absolute;
     top: 2px;
     right: 4px;
