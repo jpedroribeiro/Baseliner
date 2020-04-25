@@ -12,6 +12,8 @@ You can set the **horizontal** and **vertical** guides to match your specificati
 
 For better experience, you can change the **colour** of the lines as well as the **opacity**, making it easier to compare the grid with your website design.
 
+The offset field enables you to add some padding to the top of the grid, in case your grid starts lower down the page. 
+
 ### Persistent Data
 Baseliner will **save current configuration** values into the Chrome Storage API. This enables the user to have a persistent experience.
 

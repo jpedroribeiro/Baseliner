@@ -8,6 +8,7 @@ function Popup() {
   const ENV_EXTENSION = chrome && chrome.tabs;
   const [hasStartedUp, setHasStartedUp] = React.useState(false);
   const [statusLabel, setStatusLabel] = React.useState("loading...");
+  const [topOffset, setTopOffset] = React.useState(0);
   const [enableVertical, setEnableVertical] = React.useState(true);
   const [colourVertical, setColourVertical] = React.useState("#0829d0");
   const [opacityVertical, setOpacityVertical] = React.useState(100);
@@ -25,8 +26,8 @@ function Popup() {
     } else {
       setEnableHorizontal(checked);
     }
-
   }
+
   function handleColour(e) {
     const grid = e.currentTarget.dataset.grid;
     if (grid === "vertical") {
@@ -34,7 +35,6 @@ function Popup() {
     } else {
       setColourHorizontal(e.currentTarget.value);
     }
-
   }
 
   function handleBaseline(e) {
@@ -44,7 +44,10 @@ function Popup() {
     } else {
       setBaselineHorizontal(e.currentTarget.value);
     }
+  }
 
+  function handleTopOffset(e) {
+      setTopOffset(e.currentTarget.value);
   }
 
   function handleOpacity(e) {
@@ -54,7 +57,6 @@ function Popup() {
     } else {
       setOpacityHorizontal(e.currentTarget.value);
     }
-
   }
 
   React.useEffect(() => {
@@ -89,7 +91,8 @@ function Popup() {
                 horizontalGreen: ${message.objOfValues.horizontalGreen},
                 horizontalOpacity: ${message.objOfValues.horizontalOpacity},
                 horizontalBaseline: ${message.objOfValues.horizontalBaseline},
-                horizontalEnable: ${message.objOfValues.horizontalEnable}
+                horizontalEnable: ${message.objOfValues.horizontalEnable},
+                topOffset: ${message.objOfValues.topOffset}
               })`
             });
             break;
@@ -109,7 +112,8 @@ function Popup() {
                 horizontalGreen,
                 horizontalOpacity,
                 horizontalBaseline,
-                horizontalEnable
+                horizontalEnable,
+                topOffset
               }
             } = message;
             setColourHorizontal(
@@ -124,6 +128,7 @@ function Popup() {
             setOpacityVertical(verticalOpacity);
             setBaselineVertical(verticalBaseline);
             setEnableVertical(verticalEnable);
+            setTopOffset(topOffset);
 
             // Generate and apply styles
             chrome.tabs.executeScript({
@@ -139,7 +144,8 @@ function Popup() {
                 ${horizontalGreen},
                 ${horizontalOpacity},
                 ${horizontalBaseline},
-                ${horizontalEnable}
+                ${horizontalEnable},
+                ${topOffset}
               )`
             });
             break;
@@ -191,7 +197,8 @@ function Popup() {
           ${horizontal.green}, 
           ${horizontal.opacity},
           ${horizontal.baseline},
-          ${horizontal.enable}
+          ${horizontal.enable},
+          ${topOffset}
         )`
       });
     }
@@ -205,7 +212,8 @@ function Popup() {
     baselineVertical,
     baselineHorizontal,
     enableVertical,
-    enableHorizontal
+    enableHorizontal,
+      topOffset
   ]);
 
   return (
@@ -273,6 +281,7 @@ function Popup() {
           />
         </div>
       </div>
+
       <div className={`grid horizontal${enableHorizontal ? "" : " disabled"}`}>
         <h2>Horizontal</h2>
         <div className={"row checkbox"}>
@@ -325,6 +334,21 @@ function Popup() {
           />
         </div>
       </div>
+
+      <div className={`grid`}>
+        <h2>Offset</h2>
+        <div className={"row"}>
+          <label htmlFor={"topOffset"}>Top</label>
+          <input
+              type="number"
+              min={0}
+              id="topOffset"
+              value={topOffset}
+              onChange={handleTopOffset}
+          />
+        </div>
+      </div>
+
       <div className={"footer"}>
         <a
           href={"https://github.com/jpedroribeiro/Baseliner/issues"}

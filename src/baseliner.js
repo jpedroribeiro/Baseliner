@@ -29,9 +29,10 @@ window.Baseliner = {
     horizontalGreen,
     horizontalOpacity,
     horizontalBaseline,
-    horizontalEnable
+    horizontalEnable,
+    topOffset
   ) {
-    const baselinerPaddingTop = 0; // Note: disabling this feature for now
+    const baselinerPaddingTop = topOffset;
     const sheet = document.getElementById(this.styleTagID).sheet;
 
     /*language=LESS*/
@@ -101,7 +102,8 @@ window.Baseliner = {
         horizontalGreen,
         horizontalOpacity,
         horizontalBaseline,
-        horizontalEnable
+        horizontalEnable,
+        topOffset
       }
     });
   },
