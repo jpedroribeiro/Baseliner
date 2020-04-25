@@ -1,30 +1,31 @@
 {
-	"manifest_version": 2,
-	"name": "Baseliner",
-	"short_name": "Baseliner",
-	"description": "An extension for designers and developers who care about vertical rhythm.",
-	"version": "5.7",
-	"author": "J. Pedro Ribeiro",
-	"homepage_url": "https://www.jpedroribeiro.com/",
-	"browser_action": {
-		"default_popup": "main.html",
-		"default_title": "Baseliner",
-		"default_icon": {
-			"16": "icon16.png",
-			"48": "icon48.png",
-			"128": "icon128.png"
-		}
-	},
-	"icons": {
-		"16": "icon16.png",
-		"48": "icon48.png",
-		"128": "icon128.png"
-	},
-	"permissions": ["activeTab", "storage"],
-	"web_accessible_resources": ["line.svg", "main.js"],
-	"applications": {
-		"gecko": {
-			"id": "contact@jpedroribeiro.com"
-		}
-	}
+  "manifest_version": 2,
+  "name": "Baseliner",
+  "short_name": "Baseliner",
+  "description": "An extension for designers and developers who care about grid alignment.",
+  "version": "6.1",
+  "author": "J. Pedro Ribeiro",
+  "homepage_url": "https://www.jpedroribeiro.com/",
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Baseliner",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_security_policy": "script-src 'self' 'sha256-d8OMhPWLtwxmmPVk+si2J0GiOcDVaPFvC2pJoW/kOlU='; object-src 'self'",
+  "permissions": ["activeTab", "storage"],
+  "web_accessible_resources": ["main.js"],
+  "applications": {
+    "gecko": {
+      "id": "contact@jpedroribeiro.com"
+    }
+  }
 }
