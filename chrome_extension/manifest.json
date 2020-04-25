@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Baseliner",
 	"short_name": "Baseliner",
-	"description": "An extension for designers and developers who care about vertical rhythm.",
+	"description": "An extension for designers and developers who care about vertical rhythm, alignment, and pixel perfect grids.",
 	"version": "5.7",
 	"author": "J. Pedro Ribeiro",
 	"homepage_url": "https://www.jpedroribeiro.com/",
