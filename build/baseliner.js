@@ -120,14 +120,15 @@ window.Baseliner = {
     chrome.storage.sync.get(url, (data) => {
       const item = data[url];
 
-      if (item) {
+      if (item && Object.keys(item)?.length > 0) {
         // We got data from previous session
         chrome.runtime.sendMessage({ status: "load", storage: item });
 
         console.log(
           "%c Baseliner loaded from Storage 🗄 ",
           "background: #DFDFDF; color: #209C39",
-          item
+          item,
+          Object.keys(item)
         );
       } else {
         // We're ready to roll with default values
