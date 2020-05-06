@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Baseliner",
   "short_name": "Baseliner",
-  "description": "An extension for designers and developers who care about pixel perfect websites. Baseliner adds a layer on top of any website with horizontal and vertical lines to help you align your design to a specific baseline. Fully customisable. The configuration for each website is also saved on local storage for future use.",
+  "description": "Baseliner adds a layer on top of any website with horizontal & vertical lines to help you align your design to a specific baseline.",
   "version": "6.2",
   "author": "J. Pedro Ribeiro",
   "homepage_url": "https://jpedroribeiro.com/2020/04/baseliner-6-is-out/",
