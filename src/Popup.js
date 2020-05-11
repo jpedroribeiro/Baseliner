@@ -387,13 +387,6 @@ function Popup() {
         >
           Feedback?
         </a>
-        <a
-          href={"https://ko-fi.com/jpedroribeiro"}
-          target={"_blank"}
-          title={"Help the project grow by making a small contribution!"}
-        >
-          Support Us
-        </a>
       </div>
     </div>
   );
