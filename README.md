@@ -44,6 +44,13 @@ You can also install Baseliner without using the Chrome Store, this is helpful i
 
 1. Replace manifest with `firefox_addon/manifest.json`, it has an extra field needed for Firefox
 2. Compress the files in the folder, not the folder itself (opposite of Chrome)  
+3. Firefox doesn't like external files, so we need to copy workbox-sw.js into a local file and then reference it under `build/service-worker.js` like:
+
+     importScripts('/third_party/workbox/workbox-sw.js');
+     
+     workbox.setConfig({
+       modulePathPrefix: '/third_party/workbox/'
+     });
 
 ## TODO
 1. Add Typescript
