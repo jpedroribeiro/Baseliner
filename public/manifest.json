@@ -3,7 +3,7 @@
   "name": "Baseliner",
   "short_name": "Baseliner",
   "description": "Baseliner adds horizontal & vertical lines to help you align your grid to any website.",
-  "version": "6.2",
+  "version": "6.3",
   "author": "J. Pedro Ribeiro",
   "homepage_url": "https://jpedroribeiro.com/",
   "browser_action": {

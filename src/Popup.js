@@ -9,6 +9,8 @@ function Popup() {
   const [hasStartedUp, setHasStartedUp] = React.useState(false);
   const [statusLabel, setStatusLabel] = React.useState("loading...");
   const [topOffset, setTopOffset] = React.useState(0);
+  const [leftOffset, setLeftOffset] = React.useState(0);
+  const [rightOffset, setRightOffset] = React.useState(0);
   const [forceStyles, setForceStyles] = React.useState(false);
   const [enableVertical, setEnableVertical] = React.useState(true);
   const [colourVertical, setColourVertical] = React.useState("#0829d0");
@@ -21,6 +23,13 @@ function Popup() {
 
   function handleTopOffset(e) {
     setTopOffset(e.currentTarget.value);
+  }
+
+  function handleLeftOffset(e) {
+    setLeftOffset(e.currentTarget.value);
+  }
+  function handleRightOffset(e) {
+    setRightOffset(e.currentTarget.value);
   }
 
   function handleForceStyles(e) {
@@ -99,6 +108,8 @@ function Popup() {
                 horizontalBaseline: ${message.objOfValues.horizontalBaseline},
                 horizontalEnable: ${message.objOfValues.horizontalEnable},
                 topOffset: ${message.objOfValues.topOffset},
+                leftOffset: ${message.objOfValues.leftOffset},
+                rightOffset: ${message.objOfValues.rightOffset},
                 forceStyles: ${message.objOfValues.forceStyles}
               })`,
             });
@@ -121,6 +132,8 @@ function Popup() {
                 horizontalBaseline,
                 horizontalEnable,
                 topOffset,
+                leftOffset,
+                rightOffset,
                 forceStyles,
               },
             } = message;
@@ -137,6 +150,8 @@ function Popup() {
             setBaselineVertical(verticalBaseline);
             setEnableVertical(verticalEnable);
             setTopOffset(topOffset);
+            setLeftOffset(leftOffset);
+            setRightOffset(rightOffset);
             setForceStyles(forceStyles);
 
             // Generate and apply styles
@@ -155,6 +170,8 @@ function Popup() {
                 ${horizontalBaseline},
                 ${horizontalEnable},
                 ${topOffset},
+                ${leftOffset},
+                ${rightOffset},
                 ${forceStyles}
               )`,
             });
@@ -209,6 +226,8 @@ function Popup() {
           ${horizontal.baseline},
           ${horizontal.enable},
           ${topOffset},
+          ${leftOffset},
+          ${rightOffset},
           ${forceStyles}
         )`,
       });
@@ -225,6 +244,8 @@ function Popup() {
     enableVertical,
     enableHorizontal,
     topOffset,
+    leftOffset,
+    rightOffset,
     forceStyles,
   ]);
 
@@ -347,10 +368,20 @@ function Popup() {
         </div>
       </div>
 
-      <div className={"grid-duo"}>
-        <div className={`grid`}>
-          <h2>Offset</h2>
-          <div className={"row"}>
+      <div className={"grid-trio grid"}>
+        <h2>Offset</h2>
+        <div className={"row"}>
+          <div className={"grid-trio-unit"}>
+            <label htmlFor={"leftOffset"}>Left</label>
+            <input
+              type="number"
+              min={0}
+              id="leftOffset"
+              value={leftOffset}
+              onChange={handleLeftOffset}
+            />
+          </div>
+          <div className={"grid-trio-unit"}>
             <label htmlFor={"topOffset"}>Top</label>
             <input
               type="number"
@@ -360,22 +391,32 @@ function Popup() {
               onChange={handleTopOffset}
             />
           </div>
-        </div>
-
-        <div className={`grid`}>
-          <h2>Force Styles</h2>
-          <div className="row">
-            <label className={"label-tweak"}>Enable</label>
-          </div>
-          <div className={"row checkbox checkbox-inline"}>
+          <div className={"grid-trio-unit"}>
+            <label htmlFor={"rightOffset"}>Right</label>
             <input
-              type="checkbox"
-              id="forceStyles"
-              checked={forceStyles}
-              onChange={handleForceStyles}
+              type="number"
+              min={0}
+              id="rightOffset"
+              value={rightOffset}
+              onChange={handleRightOffset}
             />
-            <label htmlFor={"forceStyles"}>Enable</label>
           </div>
+        </div>
+      </div>
+
+      <div className={`grid`}>
+        <h2>Force Styles</h2>
+        <div className="row">
+          <label className={"label-tweak"}>Enable</label>
+        </div>
+        <div className={"row checkbox checkbox-inline"}>
+          <input
+            type="checkbox"
+            id="forceStyles"
+            checked={forceStyles}
+            onChange={handleForceStyles}
+          />
+          <label htmlFor={"forceStyles"}>Enable</label>
         </div>
       </div>
 

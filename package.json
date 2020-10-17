@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "bak_build": "react-scripts build",
     "build": "react-scripts build && yarn run copy-baseliner-file",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
