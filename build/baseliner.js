@@ -31,9 +31,10 @@ window.Baseliner = {
     horizontalBaseline,
     horizontalEnable,
     topOffset,
+    leftOffset,
+    rightOffset,
     forceStyles
   ) {
-    const baselinerPaddingTop = topOffset;
     const sheet = document.getElementById(this.styleTagID).sheet;
 
     /*language=LESS*/
@@ -49,13 +50,13 @@ window.Baseliner = {
         position: absolute${forceStyles ? "!important" : ""};
         width: auto${forceStyles ? "!important" : ""};
         height: auto${forceStyles ? "!important" : ""};
-        z-index: 9999${forceStyles ? "!important" : ""};
+        z-index: 99999${forceStyles ? "!important" : ""};
         content: ""${forceStyles ? "!important" : ""};
         display: block${forceStyles ? "!important" : ""};
         pointer-events: none${forceStyles ? "!important" : ""};
-        right: 0${forceStyles ? "!important" : ""};
+        right: ${rightOffset}px${forceStyles ? "!important" : ""};
         bottom: 0${forceStyles ? "!important" : ""};
-        left: 0${forceStyles ? "!important" : ""};
+        left: ${leftOffset}px${forceStyles ? "!important" : ""};
         background: linear-gradient(to right,
             rgba(${verticalRed}, ${verticalGreen}, ${verticalBlue}, ${
         verticalEnable ? verticalOpacity / 100 : 0
@@ -72,7 +73,7 @@ window.Baseliner = {
           left top / 100% ${horizontalBaseline}px repeat-y${
         forceStyles ? "!important" : ""
       };
-        top: ${baselinerPaddingTop}px${forceStyles ? "!important" : ""};
+        top: ${topOffset}px${forceStyles ? "!important" : ""};
       }`,
       `body {
         height: auto${forceStyles ? "!important" : ""};
@@ -108,6 +109,8 @@ window.Baseliner = {
         horizontalBaseline,
         horizontalEnable,
         topOffset,
+        leftOffset,
+        rightOffset,
         forceStyles,
       },
     });
