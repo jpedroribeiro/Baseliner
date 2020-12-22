@@ -51,6 +51,11 @@ You can also install Baseliner without using the Chrome Store, this is helpful i
      workbox.setConfig({
        modulePathPrefix: '/third_party/workbox/'
      });
+     
+## MS Edge
+
+Same steps as Chrome.
+     
 
 ## TODO
 1. Add Typescript
