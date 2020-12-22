@@ -3,7 +3,7 @@ Baseliner
 
 *[All your baseline are belong to us](https://en.wikipedia.org/wiki/All_your_base_are_belong_to_us)*
 
-**Baseliner** is a Chrome extension for perfectionist Front-End Developers and UX Designers.
+**Baseliner** is a Chrome, Firefox, and MS Edge extension for perfectionist Front-End Developers and UX Designers.
 
 This tool will add grid layer on top of any website to be used as a guidance when developing interfaces. 
 
@@ -23,7 +23,7 @@ Baseliner will **save current configuration** values into the Chrome Storage API
 Please, [open an issue](https://github.com/jpedroribeiro/Baseliner/issues/new/choose) and let us know about new features you wish we support or issues you've found while using the app.
 
 ## Installation
-Baseliner is an **extension** for [Chrome](https://chrome.google.com/webstore/detail/baseliner/agoopbiflnjadjfbhimhlmcbgmdgldld) and [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/baseliner-add-on/)  
+Baseliner is an **extension** for [Chrome](https://chrome.google.com/webstore/detail/baseliner/agoopbiflnjadjfbhimhlmcbgmdgldld), [Firefox](https://addons.mozilla.org/en-GB/firefox/addon/baseliner-add-on/), and [MS Edge](https://microsoftedge.microsoft.com/addons/detail/baseliner/ifgkfekmbjholbkkloalielmlgdoljfh)    
 
 ### Manual Installation
 You can also install Baseliner without using the Chrome Store, this is helpful if you want to use a new feature that was no published yet.
