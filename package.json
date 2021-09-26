@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && yarn run copy-baseliner-file",
+    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build && yarn run copy-baseliner-file",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "copy-baseliner-file": "cp src/baseliner.js build/baseliner.js"
@@ -30,6 +30,6 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "2.4.1"
   }
 }

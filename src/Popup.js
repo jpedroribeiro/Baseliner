@@ -6,6 +6,7 @@ import rgbToHex from "./rgbToHex";
 
 function Popup() {
   const ENV_EXTENSION = chrome && chrome.tabs;
+  const IS_CHROMIUM = chrome && chrome.app; // Firefox eyedropper is not helpful so I enable that on Chromium only
   const [hasStartedUp, setHasStartedUp] = React.useState(false);
   const [statusLabel, setStatusLabel] = React.useState("loading...");
   const [topOffset, setTopOffset] = React.useState(0);
@@ -255,6 +256,7 @@ function Popup() {
         <a
           href={"https://github.com/jpedroribeiro/Baseliner/"}
           target={"_blank"}
+          rel="noreferrer"
         >
           Baseliner
         </a>
@@ -278,11 +280,13 @@ function Popup() {
           <label htmlFor={"colourVertical"}>Colour</label>
           <input
             disabled={!enableVertical}
-            type="color"
+            type={IS_CHROMIUM ? "color" : "text"}
             id="colourVertical"
-            value={colourVertical}
+            value={IS_CHROMIUM ? colourVertical : null}
+            defaultValue={IS_CHROMIUM ? null : colourVertical}
             data-grid="vertical"
-            onChange={handleColour}
+            onChange={IS_CHROMIUM ? handleColour : null}
+            onBlur={IS_CHROMIUM ? null : handleColour}
           />
         </div>
 
@@ -331,11 +335,13 @@ function Popup() {
           <label htmlFor={"colourHorizontal"}>Colour</label>
           <input
             disabled={!enableHorizontal}
-            type="color"
+            type={IS_CHROMIUM ? "color" : "text"}
             id="colourHorizontal"
-            value={colourHorizontal}
+            value={IS_CHROMIUM ?colourHorizontal: null}
+            defaultValue={IS_CHROMIUM ? null:colourHorizontal}
             data-grid="horizontal"
-            onChange={handleColour}
+            onChange={IS_CHROMIUM ? handleColour : null}
+            onBlur={IS_CHROMIUM ? null : handleColour}
           />
         </div>
 
@@ -425,6 +431,7 @@ function Popup() {
           href={"https://github.com/jpedroribeiro/Baseliner/issues"}
           target={"_blank"}
           title={"Suggestions? Bugs? Drop us a message"}
+          rel="noreferrer"
         >
           Feedback?
         </a>
@@ -432,6 +439,7 @@ function Popup() {
           href={"https://ko-fi.com/jpedroribeiro"}
           target={"_blank"}
           title={"Help the project grow by making a small contribution!"}
+          rel="noreferrer"
         >
           Support Us
         </a>
