@@ -3,7 +3,7 @@
   "name": "Baseliner",
   "short_name": "Baseliner",
   "description": "Baseliner adds a layer on top of any website with horizontal & vertical lines to help you align your design to a specific baseline.",
-  "version": "6.3",
+  "version": "6.4",
   "author": "J. Pedro Ribeiro",
   "homepage_url": "https://www.jpedroribeiro.com/",
   "browser_action": {
