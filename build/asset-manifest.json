@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.c17a36b7.chunk.css",
-    "main.js": "/static/js/main.25970ae2.chunk.js",
-    "main.js.map": "/static/js/main.25970ae2.chunk.js.map",
+    "main.css": "/static/css/main.b5806cab.chunk.css",
+    "main.js": "/static/js/main.ac3b2593.chunk.js",
+    "main.js.map": "/static/js/main.ac3b2593.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.ca09c710.js",
     "runtime-main.js.map": "/static/js/runtime-main.ca09c710.js.map",
     "static/js/2.a28f98ca.chunk.js": "/static/js/2.a28f98ca.chunk.js",
     "static/js/2.a28f98ca.chunk.js.map": "/static/js/2.a28f98ca.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.c17a36b7.chunk.css.map": "/static/css/main.c17a36b7.chunk.css.map",
+    "static/css/main.b5806cab.chunk.css.map": "/static/css/main.b5806cab.chunk.css.map",
     "static/js/2.a28f98ca.chunk.js.LICENSE.txt": "/static/js/2.a28f98ca.chunk.js.LICENSE.txt",
     "static/media/Popup.css": "/static/media/Dosis.e66c6503.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.ca09c710.js",
     "static/js/2.a28f98ca.chunk.js",
-    "static/css/main.c17a36b7.chunk.css",
-    "static/js/main.25970ae2.chunk.js"
+    "static/css/main.b5806cab.chunk.css",
+    "static/js/main.ac3b2593.chunk.js"
   ]
 }
