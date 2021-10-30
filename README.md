@@ -12,6 +12,8 @@ You can set the **horizontal** and **vertical** guides to match your specificati
 
 For better experience, you can change the **colour** of the lines as well as the **opacity**, making it easier to compare the grid with your website design.
 
+Choose between **lines** or **columns**.
+
 The **offset** field enables you to add some padding to the top of the grid, in case your grid starts lower down the page.
  
 If the page you are testing has some styles getting in the way of Baseliner, you can enable **Force Styles** to apply `!important` to the extension styles.
@@ -35,12 +37,16 @@ You can also install Baseliner without using the Chrome Store, this is helpful i
 
 # Developer Notes
 
-## Chrome
+## Building for Chrome or Edge
 
 1. After updating code & bumping manifest version, run `yarn build`
 1. Compress `/build` folder and submit it
 
-## Firefox
+## Developing for Firefox
+
+To test locally, zip the files in the folder (`manifest.json` at root level), rename the `.zip` to `.xpi` and then load it on the tab `about:debugging`.
+
+## Building for Firefox
 
 1. Replace manifest with `firefox_addon/manifest.json`, it has an extra field needed for Firefox
 2. Compress the files in the folder, not the folder itself (opposite of Chrome)  
@@ -51,10 +57,6 @@ You can also install Baseliner without using the Chrome Store, this is helpful i
      workbox.setConfig({
        modulePathPrefix: '/third_party/workbox/'
      });
-     
-## MS Edge
-
-Same steps as Chrome.
      
 
 ## TODO
