@@ -38,7 +38,7 @@ h1 a {
 
 .popup {
     width: 250px;
-    height: 566px;
+    height: 600px;
 }
 
 .status {
@@ -179,11 +179,13 @@ h2 {
     flex: 0 0 60px;
 }
 
-.row:not(.checkbox) input {
+.row:not(.checkbox) input,
+.row:not(.checkbox) select {
     flex: 1 1 auto;
 }
 
-.row:not(.checkbox) input {
+.row:not(.checkbox) input,
+.row:not(.checkbox) select {
     max-width: 116px;
 }
 

@@ -17,10 +17,12 @@ function Popup() {
   const [colourVertical, setColourVertical] = React.useState("#0829d0");
   const [opacityVertical, setOpacityVertical] = React.useState(100);
   const [baselineVertical, setBaselineVertical] = React.useState(8);
+  const [baselineStyleVertical, setBaselineStyleVertical] = React.useState("line");
   const [enableHorizontal, setEnableHorizontal] = React.useState(false);
   const [colourHorizontal, setColourHorizontal] = React.useState("#cd4d28");
   const [opacityHorizontal, setOpacityHorizontal] = React.useState(100);
   const [baselineHorizontal, setBaselineHorizontal] = React.useState(8);
+  const [baselineStyleHorizontal, setBaselineStyleHorizontal] = React.useState("line");
 
   function handleTopOffset(e) {
     setTopOffset(e.currentTarget.value);
@@ -54,6 +56,15 @@ function Popup() {
       setColourVertical(e.currentTarget.value);
     } else {
       setColourHorizontal(e.currentTarget.value);
+    }
+  }
+
+  function handleStyleSelect(e) {
+    const grid = e.currentTarget.dataset.grid;
+    if (grid === "vertical") {
+      setBaselineStyleVertical(e.currentTarget.value);
+    } else {
+      setBaselineStyleHorizontal(e.currentTarget.value);
     }
   }
 
@@ -101,12 +112,14 @@ function Popup() {
                 verticalGreen: ${message.objOfValues.verticalGreen},
                 verticalOpacity: ${message.objOfValues.verticalOpacity},
                 verticalBaseline: ${message.objOfValues.verticalBaseline},
+                verticalStyleBaseline: "${message.objOfValues.verticalStyleBaseline}",
                 verticalEnable: ${message.objOfValues.verticalEnable},
                 horizontalRed: ${message.objOfValues.horizontalRed},
                 horizontalBlue: ${message.objOfValues.horizontalBlue},
                 horizontalGreen: ${message.objOfValues.horizontalGreen},
                 horizontalOpacity: ${message.objOfValues.horizontalOpacity},
                 horizontalBaseline: ${message.objOfValues.horizontalBaseline},
+                horizontalStyleBaseline: "${message.objOfValues.horizontalStyleBaseline}",
                 horizontalEnable: ${message.objOfValues.horizontalEnable},
                 topOffset: ${message.objOfValues.topOffset},
                 leftOffset: ${message.objOfValues.leftOffset},
@@ -125,12 +138,14 @@ function Popup() {
                 verticalGreen,
                 verticalOpacity,
                 verticalBaseline,
+                verticalStyleBaseline,
                 verticalEnable,
                 horizontalRed,
                 horizontalBlue,
                 horizontalGreen,
                 horizontalOpacity,
                 horizontalBaseline,
+                horizontalStyleBaseline,
                 horizontalEnable,
                 topOffset,
                 leftOffset,
@@ -143,12 +158,14 @@ function Popup() {
             );
             setOpacityHorizontal(horizontalOpacity);
             setBaselineHorizontal(horizontalBaseline);
+            setBaselineStyleHorizontal(horizontalStyleBaseline);
             setEnableHorizontal(horizontalEnable);
             setColourVertical(
               rgbToHex(verticalRed, verticalGreen, verticalBlue)
             );
             setOpacityVertical(verticalOpacity);
             setBaselineVertical(verticalBaseline);
+            setBaselineStyleVertical(verticalStyleBaseline);
             setEnableVertical(verticalEnable);
             setTopOffset(topOffset);
             setLeftOffset(leftOffset);
@@ -163,12 +180,14 @@ function Popup() {
                 ${verticalGreen},
                 ${verticalOpacity},
                 ${verticalBaseline},
+                "${verticalStyleBaseline}",
                 ${verticalEnable},
                 ${horizontalRed},
                 ${horizontalBlue},
                 ${horizontalGreen},
                 ${horizontalOpacity},
                 ${horizontalBaseline},
+                "${horizontalStyleBaseline}",
                 ${horizontalEnable},
                 ${topOffset},
                 ${leftOffset},
@@ -199,6 +218,7 @@ function Popup() {
         blue: colourVerticalRGB.b,
         opacity: opacityVertical,
         baseline: baselineVertical,
+        baselineStyle: baselineStyleVertical,
         enable: enableVertical,
       };
       const colourHorizontalRGB = hexToRGB(colourHorizontal);
@@ -208,6 +228,7 @@ function Popup() {
         blue: colourHorizontalRGB.b,
         opacity: opacityHorizontal,
         baseline: baselineHorizontal,
+        baselineStyle: baselineStyleHorizontal,
         enable: enableHorizontal,
       };
 
@@ -219,12 +240,14 @@ function Popup() {
           ${vertical.green}, 
           ${vertical.opacity},
           ${vertical.baseline}, 
+          "${vertical.baselineStyle}", 
           ${vertical.enable}, 
           ${horizontal.red}, 
           ${horizontal.blue}, 
           ${horizontal.green}, 
           ${horizontal.opacity},
           ${horizontal.baseline},
+          "${horizontal.baselineStyle}",
           ${horizontal.enable},
           ${topOffset},
           ${leftOffset},
@@ -242,6 +265,8 @@ function Popup() {
     opacityHorizontal,
     baselineVertical,
     baselineHorizontal,
+    baselineStyleVertical,
+    baselineStyleHorizontal,
     enableVertical,
     enableHorizontal,
     topOffset,
@@ -275,6 +300,19 @@ function Popup() {
             onChange={handleEnable}
           />
           <label htmlFor={"enableVertical"}>Enable</label>
+        </div>
+        <div className={"row"}>
+          <label htmlFor={"styleVertical"}>Style</label>
+          <select
+            disabled={!enableVertical}
+            id="styleVertical"
+            data-grid="vertical"
+            onChange={handleStyleSelect}
+            defaultValue={baselineStyleVertical}
+          >
+            <option value={"line"}>Line</option>
+            <option value={"column"}>Column</option>
+          </select>
         </div>
         <div className={"row"}>
           <label htmlFor={"colourVertical"}>Colour</label>
@@ -330,6 +368,19 @@ function Popup() {
             onChange={handleEnable}
           />
           <label htmlFor={"enableHorizontal"}>Enable</label>
+        </div>
+        <div className={"row"}>
+          <label htmlFor={"styleHorizontal"}>Style</label>
+          <select
+            disabled={!enableHorizontal}
+            id="styleHorizontal"
+            data-grid="horizontal"
+            onChange={handleStyleSelect}
+            defaultValue={baselineStyleHorizontal}
+          >
+            <option value={"line"}>Line</option>
+            <option value={"column"}>Column</option>
+          </select>
         </div>
         <div className={"row"}>
           <label htmlFor={"colourHorizontal"}>Colour</label>

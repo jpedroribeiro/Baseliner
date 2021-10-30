@@ -23,12 +23,14 @@ window.Baseliner = {
     verticalGreen,
     verticalOpacity,
     verticalBaseline,
+    verticalStyleBaseline,
     verticalEnable,
     horizontalRed,
     horizontalBlue,
     horizontalGreen,
     horizontalOpacity,
     horizontalBaseline,
+    horizontalStyleBaseline,
     horizontalEnable,
     topOffset,
     leftOffset,
@@ -60,17 +62,17 @@ window.Baseliner = {
         background: linear-gradient(to right,
             rgba(${verticalRed}, ${verticalGreen}, ${verticalBlue}, ${
         verticalEnable ? verticalOpacity / 100 : 0
-      }) 1px,
-            transparent 1px
+      }) ${verticalStyleBaseline === "column" ? verticalBaseline : "1"}px,
+            transparent ${verticalStyleBaseline === "column" ? verticalBaseline : "1"}px
           )
-          left top / ${verticalBaseline}px 100% repeat-x,
+          left top / ${verticalStyleBaseline === "column" ? verticalBaseline * 2 : verticalBaseline}px 100% repeat-x,
           linear-gradient(
             rgba(${horizontalRed}, ${horizontalGreen}, ${horizontalBlue}, ${
         horizontalEnable ? horizontalOpacity / 100 : 0
-      }) 1px,
-            transparent 1px
+      }) ${horizontalStyleBaseline==="column" ? horizontalBaseline : "1"}px,
+            transparent ${horizontalStyleBaseline==="column" ? horizontalBaseline : "1"}px
           )
-          left top / 100% ${horizontalBaseline}px repeat-y${
+          left top / 100% ${horizontalStyleBaseline==="column" ? horizontalBaseline * 2 : horizontalBaseline}px repeat-y${
         forceStyles ? "!important" : ""
       };
         top: ${topOffset}px${forceStyles ? "!important" : ""};
@@ -101,12 +103,14 @@ window.Baseliner = {
         verticalGreen,
         verticalOpacity,
         verticalBaseline,
+        verticalStyleBaseline,
         verticalEnable,
         horizontalRed,
         horizontalBlue,
         horizontalGreen,
         horizontalOpacity,
         horizontalBaseline,
+        horizontalStyleBaseline,
         horizontalEnable,
         topOffset,
         leftOffset,
