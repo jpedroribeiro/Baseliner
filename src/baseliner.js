@@ -77,9 +77,6 @@ window.Baseliner = {
       };
         top: ${topOffset}px${forceStyles ? "!important" : ""};
       }`,
-      `body {
-        height: auto${forceStyles ? "!important" : ""};
-      }`,
     ];
 
     // Remove previous styles
