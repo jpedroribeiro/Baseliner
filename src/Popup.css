@@ -38,7 +38,7 @@ h1 a {
 
 .popup {
     width: 250px;
-    height: 600px;
+    height: 600px; /* An extension max-height is 600px */
 }
 
 .status {
@@ -172,7 +172,7 @@ h2 {
 .row:not(.checkbox) {
     display: flex;
     align-items: baseline;
-    height: 36px;
+    height: 32px;
 }
 
 .row:not(.checkbox) label {
@@ -199,7 +199,7 @@ h2 {
 .footer {
     display: flex;
     justify-content: space-around;
-    margin: 8px;
+    margin: -2px 0 0;
 }
 
 .footer a {
