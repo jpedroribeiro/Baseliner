@@ -1,4 +1,4 @@
-/*global chrome*/
+/*global chrome, Baseliner*/
 import React from "react";
 import "./Popup.css";
 import hexToRGB from "./hexToRGB";
@@ -31,6 +31,7 @@ function Popup() {
   function handleLeftOffset(e) {
     setLeftOffset(e.currentTarget.value);
   }
+
   function handleRightOffset(e) {
     setRightOffset(e.currentTarget.value);
   }
@@ -86,11 +87,84 @@ function Popup() {
     }
   }
 
-  React.useEffect(() => {
+  async function getCurrentTab() {
+    let queryOptions = {active: true, currentWindow: true};
+    let [tab] = await chrome.tabs.query(queryOptions);
+    return tab;
+  }
+
+  function baselinerGenerateStyles(verticalRed,
+                          verticalBlue,
+                          verticalGreen,
+                          verticalOpacity,
+                          verticalBaseline,
+                          verticalStyleBaseline,
+                          verticalEnable,
+                          horizontalRed,
+                          horizontalBlue,
+                          horizontalGreen,
+                          horizontalOpacity,
+                          horizontalBaseline,
+                          horizontalStyleBaseline,
+                          horizontalEnable,
+                          topOffset,
+                          leftOffset,
+                          rightOffset,
+                          forceStyles) {
+    Baseliner.generateStyles(
+      verticalRed,
+      verticalBlue,
+      verticalGreen,
+      verticalOpacity,
+      verticalBaseline,
+      `${verticalStyleBaseline}`,
+      verticalEnable,
+      horizontalRed,
+      horizontalBlue,
+      horizontalGreen,
+      horizontalOpacity,
+      horizontalBaseline,
+      `${horizontalStyleBaseline}`,
+      horizontalEnable,
+      topOffset,
+      leftOffset,
+      rightOffset,
+      forceStyles
+    );
+  }
+
+  function baselinerSaveToStorage(message) {
+    Baseliner.saveToStorage({
+      verticalRed: message.objOfValues.verticalRed,
+      verticalBlue: message.objOfValues.verticalBlue,
+      verticalGreen: message.objOfValues.verticalGreen,
+      verticalOpacity: message.objOfValues.verticalOpacity,
+      verticalBaseline: message.objOfValues.verticalBaseline,
+      verticalStyleBaseline: `${message.objOfValues.verticalStyleBaseline}`,
+      verticalEnable: message.objOfValues.verticalEnable,
+      horizontalRed: message.objOfValues.horizontalRed,
+      horizontalBlue: message.objOfValues.horizontalBlue,
+      horizontalGreen: message.objOfValues.horizontalGreen,
+      horizontalOpacity: message.objOfValues.horizontalOpacity,
+      horizontalBaseline: message.objOfValues.horizontalBaseline,
+      horizontalStyleBaseline: `${message.objOfValues.horizontalStyleBaseline}`,
+      horizontalEnable: message.objOfValues.horizontalEnable,
+      topOffset: message.objOfValues.topOffset,
+      leftOffset: message.objOfValues.leftOffset,
+      rightOffset: message.objOfValues.rightOffset,
+      forceStyles: message.objOfValues.forceStyles
+    });
+  }
+
+  React.useEffect(async () => {
     /* Note: renders based on first load */
     if (ENV_EXTENSION) {
       // Load up Baseliner script
-      chrome.tabs.executeScript(null, { file: "/baseliner.js" });
+      const tab = await getCurrentTab();
+      chrome.scripting.executeScript({
+        target: {tabId: tab.id},
+        files: ["/baseliner.js"]
+      });
 
       // Start listening to messages
       chrome.runtime.onMessage.addListener(function (message) {
@@ -105,27 +179,10 @@ function Popup() {
             setHasStartedUp(true);
 
             // Save to storage
-            chrome.tabs.executeScript({
-              code: `Baseliner.saveToStorage({
-                verticalRed: ${message.objOfValues.verticalRed},
-                verticalBlue: ${message.objOfValues.verticalBlue},
-                verticalGreen: ${message.objOfValues.verticalGreen},
-                verticalOpacity: ${message.objOfValues.verticalOpacity},
-                verticalBaseline: ${message.objOfValues.verticalBaseline},
-                verticalStyleBaseline: "${message.objOfValues.verticalStyleBaseline}",
-                verticalEnable: ${message.objOfValues.verticalEnable},
-                horizontalRed: ${message.objOfValues.horizontalRed},
-                horizontalBlue: ${message.objOfValues.horizontalBlue},
-                horizontalGreen: ${message.objOfValues.horizontalGreen},
-                horizontalOpacity: ${message.objOfValues.horizontalOpacity},
-                horizontalBaseline: ${message.objOfValues.horizontalBaseline},
-                horizontalStyleBaseline: "${message.objOfValues.horizontalStyleBaseline}",
-                horizontalEnable: ${message.objOfValues.horizontalEnable},
-                topOffset: ${message.objOfValues.topOffset},
-                leftOffset: ${message.objOfValues.leftOffset},
-                rightOffset: ${message.objOfValues.rightOffset},
-                forceStyles: ${message.objOfValues.forceStyles}
-              })`,
+            chrome.scripting.executeScript({
+              target: {tabId: tab.id},
+              func: baselinerSaveToStorage,
+              args: [message],
             });
             break;
 
@@ -173,27 +230,27 @@ function Popup() {
             setForceStyles(forceStyles);
 
             // Generate and apply styles
-            chrome.tabs.executeScript({
-              code: `Baseliner.generateStyles(
-                ${verticalRed},
-                ${verticalBlue},
-                ${verticalGreen},
-                ${verticalOpacity},
-                ${verticalBaseline},
-                "${verticalStyleBaseline}",
-                ${verticalEnable},
-                ${horizontalRed},
-                ${horizontalBlue},
-                ${horizontalGreen},
-                ${horizontalOpacity},
-                ${horizontalBaseline},
-                "${horizontalStyleBaseline}",
-                ${horizontalEnable},
-                ${topOffset},
-                ${leftOffset},
-                ${rightOffset},
-                ${forceStyles}
-              )`,
+            chrome.scripting.executeScript({
+              target: {tabId: tab.id},
+              func: baselinerGenerateStyles,
+              args: [verticalRed,
+                verticalBlue,
+                verticalGreen,
+                verticalOpacity,
+                verticalBaseline,
+                verticalStyleBaseline,
+                verticalEnable,
+                horizontalRed,
+                horizontalBlue,
+                horizontalGreen,
+                horizontalOpacity,
+                horizontalBaseline,
+                horizontalStyleBaseline,
+                horizontalEnable,
+                topOffset,
+                leftOffset,
+                rightOffset,
+                forceStyles],
             });
             break;
 
@@ -208,7 +265,7 @@ function Popup() {
     }
   }, [ENV_EXTENSION]);
 
-  React.useEffect(() => {
+  React.useEffect(async() => {
     /* Note: renders based on UI changes OR when it has started up */
     if (ENV_EXTENSION && hasStartedUp) {
       const colourVerticalRGB = hexToRGB(colourVertical);
@@ -233,27 +290,28 @@ function Popup() {
       };
 
       // Generate and apply styles
-      chrome.tabs.executeScript({
-        code: `Baseliner.generateStyles(
-          ${vertical.red}, 
-          ${vertical.blue}, 
-          ${vertical.green}, 
-          ${vertical.opacity},
-          ${vertical.baseline}, 
-          "${vertical.baselineStyle}", 
-          ${vertical.enable}, 
-          ${horizontal.red}, 
-          ${horizontal.blue}, 
-          ${horizontal.green}, 
-          ${horizontal.opacity},
-          ${horizontal.baseline},
-          "${horizontal.baselineStyle}",
-          ${horizontal.enable},
-          ${topOffset},
-          ${leftOffset},
-          ${rightOffset},
-          ${forceStyles}
-        )`,
+      const tab = await getCurrentTab();
+      chrome.scripting.executeScript({
+        target: {tabId: tab.id},
+        func: baselinerGenerateStyles,
+        args: [vertical.red,
+          vertical.blue,
+          vertical.green,
+          vertical.opacity,
+          vertical.baseline,
+          `${vertical.baselineStyle}`,
+          vertical.enable,
+          horizontal.red,
+          horizontal.blue,
+          horizontal.green,
+          horizontal.opacity,
+          horizontal.baseline,
+          `${horizontal.baselineStyle}`,
+          horizontal.enable,
+          topOffset,
+          leftOffset,
+          rightOffset,
+          forceStyles],
       });
     }
   }, [
@@ -388,8 +446,8 @@ function Popup() {
             disabled={!enableHorizontal}
             type={IS_CHROMIUM ? "color" : "text"}
             id="colourHorizontal"
-            value={IS_CHROMIUM ?colourHorizontal: null}
-            defaultValue={IS_CHROMIUM ? null:colourHorizontal}
+            value={IS_CHROMIUM ? colourHorizontal : null}
+            defaultValue={IS_CHROMIUM ? null : colourHorizontal}
             data-grid="horizontal"
             onChange={IS_CHROMIUM ? handleColour : null}
             onBlur={IS_CHROMIUM ? null : handleColour}
