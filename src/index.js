@@ -1,10 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
 import Popup from "./Popup";
 import * as serviceWorker from "./serviceWorker";
-
-ReactDOM.render(<Popup />, document.getElementById("root"));
+import { createRoot } from 'react-dom/client';
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<Popup />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

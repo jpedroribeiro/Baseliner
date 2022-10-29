@@ -1,21 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.42c7489a.chunk.css",
-    "main.js": "/static/js/main.5bd7161f.chunk.js",
-    "main.js.map": "/static/js/main.5bd7161f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.ca09c710.js",
-    "runtime-main.js.map": "/static/js/runtime-main.ca09c710.js.map",
-    "static/js/2.54755c27.chunk.js": "/static/js/2.54755c27.chunk.js",
-    "static/js/2.54755c27.chunk.js.map": "/static/js/2.54755c27.chunk.js.map",
+    "main.css": "/static/css/main.010901c1.css",
+    "main.js": "/static/js/main.5fb18716.js",
+    "static/media/Dosis.woff": "/static/media/Dosis.e66c6503d00f249c41e7.woff",
     "index.html": "/index.html",
-    "static/css/main.42c7489a.chunk.css.map": "/static/css/main.42c7489a.chunk.css.map",
-    "static/js/2.54755c27.chunk.js.LICENSE.txt": "/static/js/2.54755c27.chunk.js.LICENSE.txt",
-    "static/media/Popup.css": "/static/media/Dosis.e66c6503.woff"
+    "main.010901c1.css.map": "/static/css/main.010901c1.css.map",
+    "main.5fb18716.js.map": "/static/js/main.5fb18716.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.ca09c710.js",
-    "static/js/2.54755c27.chunk.js",
-    "static/css/main.42c7489a.chunk.css",
-    "static/js/main.5bd7161f.chunk.js"
+    "static/css/main.010901c1.css",
+    "static/js/main.5fb18716.js"
   ]
 }

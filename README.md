@@ -61,10 +61,9 @@ To test locally, zip the files in the folder (`manifest.json` at root level), re
 
 ## TODO
 1. Firefox is currently stuck in 6.5.2 as they do not support manifest v3 at the moment (Latest working file: firefox-6.5.2.zip)
-2. Fix the eslint warning when building (async inside useEffect hook)
-3. Add Typescript
-4. Domain and website?
-5. Contribution notes
+1. Add Typescript
+1. Domain and website?
+1. Contribution notes
 
 ## Future ideas
 1. Use `chrome.scripting.insertCSS` instead of creating style tag: the caveat is that `removeCSS` is not supported in Chrome yet (FF only)

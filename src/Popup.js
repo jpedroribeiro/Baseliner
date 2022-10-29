@@ -156,8 +156,7 @@ function Popup() {
     });
   }
 
-  React.useEffect(async () => {
-    /* Note: renders based on first load */
+  async function firstLoad() {
     if (ENV_EXTENSION) {
       // Load up Baseliner script
       const tab = await getCurrentTab();
@@ -263,10 +262,14 @@ function Popup() {
         }
       });
     }
+  }
+
+  React.useEffect(() => {
+    /* Note: renders based on first load */
+    firstLoad().then(() => {});
   }, [ENV_EXTENSION]);
 
-  React.useEffect(async() => {
-    /* Note: renders based on UI changes OR when it has started up */
+  async function renderBaseliner(){
     if (ENV_EXTENSION && hasStartedUp) {
       const colourVerticalRGB = hexToRGB(colourVertical);
       const vertical = {
@@ -314,6 +317,11 @@ function Popup() {
           forceStyles],
       });
     }
+  }
+
+  React.useEffect(() => {
+    /* Note: renders based on UI changes OR when it has started up */
+    renderBaseliner().then(() => {});
   }, [
     ENV_EXTENSION,
     hasStartedUp,
