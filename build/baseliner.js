@@ -6,6 +6,10 @@ window.Baseliner = {
     // Add Baseliner class to body
     document.body.classList.add("baseliner");
 
+    // Add Baseliner to any dialog box on the page
+    document.querySelectorAll("dialog").forEach(el=>{el.classList.add("baseliner")})
+
+
     // Add Baseliner style tag
     if (!document.getElementById(this.styleTagID)) {
       const styleTag = document.createElement("style");
