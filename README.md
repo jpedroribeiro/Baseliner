@@ -44,23 +44,14 @@ You can also install Baseliner without using the Chrome Store, this is helpful i
 
 ## Developing for Firefox
 
-To test locally, zip the files in the folder (`manifest.json` at root level), rename the `.zip` to `.xpi` and then load it on the tab `about:debugging`.
+To test locally, open Firefox on the tab `about:debugging`., go to "This Firefox" tab, then click "Load Temporary Add-on", there select any file within the extension folder.
 
 ## Building for Firefox
 
-1. Replace manifest with `firefox_addon/manifest.json`, it has an extra field needed for Firefox
-2. Compress the files in the folder, not the folder itself (opposite of Chrome)  
-3. Firefox doesn't like external files, so we need to copy workbox-sw.js into a local file and then reference it under `build/service-worker.js` like:
-
-     importScripts('/third_party/workbox/workbox-sw.js');
-     
-     workbox.setConfig({
-       modulePathPrefix: '/third_party/workbox/'
-     });
-     
+1. Replace manifest with `firefox_addon/manifest.json`, it has extra fields needed for Firefox
+2. Compress the files *in the folder*, not the folder itself (opposite of Chrome)
 
 ## TODO
-1. Firefox is currently stuck in 6.5.2 as they do not support manifest v3 at the moment (Latest working file: firefox-6.5.2.zip)
 1. Add Typescript
 1. Domain and website?
 1. Contribution notes

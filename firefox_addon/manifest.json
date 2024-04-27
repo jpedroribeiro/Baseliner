@@ -1,12 +1,12 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Baseliner",
   "short_name": "Baseliner",
   "description": "Baseliner adds a layer on top of any website with horizontal & vertical lines to help you align your design to a specific baseline.",
-  "version": "6.5",
+  "version": "7.2",
   "author": "J. Pedro Ribeiro",
   "homepage_url": "https://www.jpedroribeiro.com/",
-  "browser_action": {
+  "action": {
     "default_popup": "index.html",
     "default_title": "Baseliner",
     "default_icon": {
@@ -20,10 +20,17 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-d8OMhPWLtwxmmPVk+si2J0GiOcDVaPFvC2pJoW/kOlU='; object-src 'self'",
-  "permissions": ["activeTab", "storage"],
-  "web_accessible_resources": ["main.js"],
-  "applications": {
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'sha256-d8OMhPWLtwxmmPVk+si2J0GiOcDVaPFvC2pJoW/kOlU='; object-src 'self'"
+  },
+  "permissions": ["activeTab", "storage", "scripting"],
+  "web_accessible_resources": [
+    {
+      "resources": ["main.js"],
+      "matches": []
+    }
+  ],
+  "browser_specific_settings": {
     "gecko": {
       "id": "contact@jpedroribeiro.com"
     }
